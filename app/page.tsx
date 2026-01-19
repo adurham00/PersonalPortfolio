@@ -6,16 +6,17 @@ export default function Home() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Check scroll position to toggle arrow visibility
   const checkScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+      // Using 5px threshold to account for browser rounding
+      setCanScrollLeft(scrollLeft > 5);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
     }
   };
 
   useEffect(() => {
+    // Initial check to see if content is scrollable
     checkScroll();
     window.addEventListener('resize', checkScroll);
     return () => window.removeEventListener('resize', checkScroll);
@@ -39,7 +40,6 @@ export default function Home() {
 
   return (
     <main className="page-wrapper">
-      {/* 1. NAVIGATION */}
       <nav className="nav-menu">
         <a href="#" className="active-link">HOME</a>
         <a href="#">ABOUT ME</a>
@@ -48,25 +48,32 @@ export default function Home() {
       </nav>
 
       <div className="grid-container">
-        {/* 2. LEFT SIDE (IMAGE) */}
         <div className="image-section">
           <img src="/your-photo.png" alt="Abigail Durham" className="main-photo" />
         </div>
 
-        {/* 3. RIGHT SIDE (CONTENT) */}
         <div className="content-section">
           <img src="/AbigailDurham.svg" alt="Abigail Durham" className="name-title-img" />
 
           <p className="bio-text">
             I design products that empower users to achieve their goals and feel 
             confident in their work. My passion is building personal connections 
-
+            and creating a positive, growth-oriented environment.
           </p>
 
           <div className="slider-area">
             <div className="slider-controls-wrapper">
               
-              {/* Arrows only visible when scrolling is possible */}
+              {/* Left Arrow (Now comes before the track in HTML) */}
+              <button 
+                onClick={() => scroll('left')} 
+                className={`nav-circle-btn prev ${canScrollLeft ? 'visible' : ''}`}
+                aria-label="Scroll Left"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a3728" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
               
               <div className="scroll-track" ref={scrollRef} onScroll={checkScroll}>
                 <div className="arch-item"><img src="/work1.jpg" alt="Work 1" /></div>
@@ -76,28 +83,17 @@ export default function Home() {
                 <div className="arch-item"><img src="/work5.jpg" alt="Work 5" /></div>
               </div>
 
-              {/* Left Arrow */}
-              <button 
-                onClick={() => scroll('left')} 
-                className={`nav-circle-btn prev ${canScrollLeft ? 'visible' : ''}`}
-                aria-label="Scroll Left"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-
               {/* Right Arrow */}
               <button 
                 onClick={() => scroll('right')} 
                 className={`nav-circle-btn next ${canScrollRight ? 'visible' : ''}`}
                 aria-label="Scroll Right"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a3728" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               </button>
-
+              
             </div>
           </div>
         </div>
