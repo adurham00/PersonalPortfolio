@@ -9,14 +9,12 @@ export default function Home() {
   const checkScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      // Using 5px threshold to account for browser rounding
       setCanScrollLeft(scrollLeft > 5);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
     }
   };
 
   useEffect(() => {
-    // Initial check to see if content is scrollable
     checkScroll();
     window.addEventListener('resize', checkScroll);
     return () => window.removeEventListener('resize', checkScroll);
@@ -26,7 +24,7 @@ export default function Home() {
     if (scrollRef.current) {
       const firstItem = scrollRef.current.querySelector('.arch-item');
       if (firstItem) {
-        const itemWidth = firstItem.clientWidth;
+        const itemWidth = (firstItem as HTMLElement).clientWidth;
         const gap = parseInt(window.getComputedStyle(scrollRef.current).gap) || 25;
         const scrollAmount = itemWidth + gap;
 
@@ -53,7 +51,12 @@ export default function Home() {
         </div>
 
         <div className="content-section">
-          <img src="/AbigailDurham.svg" alt="Abigail Durham" className="name-title-img" />
+          {/* TITLE IMAGE: Ensure filename is exactly AbigailDurham.svg in /public */}
+          <img 
+            src="/AbigailDurham.svg" 
+            alt="Abigail Durham" 
+            className="name-title-img" 
+          />
 
           <p className="bio-text">
             I design products that empower users to achieve their goals and feel 
@@ -64,13 +67,12 @@ export default function Home() {
           <div className="slider-area">
             <div className="slider-controls-wrapper">
               
-              {/* Left Arrow (Now comes before the track in HTML) */}
               <button 
                 onClick={() => scroll('left')} 
                 className={`nav-circle-btn prev ${canScrollLeft ? 'visible' : ''}`}
                 aria-label="Scroll Left"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a3728" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M15 18l-6-6 6-6" />
                 </svg>
               </button>
@@ -83,13 +85,12 @@ export default function Home() {
                 <div className="arch-item"><img src="/work5.jpg" alt="Work 5" /></div>
               </div>
 
-              {/* Right Arrow */}
               <button 
                 onClick={() => scroll('right')} 
                 className={`nav-circle-btn next ${canScrollRight ? 'visible' : ''}`}
                 aria-label="Scroll Right"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a3728" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               </button>

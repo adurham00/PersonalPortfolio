@@ -183,7 +183,7 @@ body {
   .nav-menu {
     position: absolute;
     top: 45px;
-    left: calc(45% + 35px); 
+    left: calc(45% + 60px); 
     justify-content: flex-start;
     width: auto;
     padding: 0;
