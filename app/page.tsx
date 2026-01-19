@@ -1,51 +1,76 @@
 "use client";
+import { useRef } from 'react';
 
-import { useState, useEffect } from "react";
-import { generateClient } from "aws-amplify/data";
-import type { Schema } from "@/amplify/data/resource";
-import "./../app/app.css";
-import { Amplify } from "aws-amplify";
-import outputs from "@/amplify_outputs.json";
-import "@aws-amplify/ui-react/styles.css";
+export default function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-Amplify.configure(outputs);
-
-const client = generateClient<Schema>();
-
-export default function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  function listTodos() {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }
-
-  useEffect(() => {
-    listTodos();
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({
-      content: window.prompt("Todo content"),
-    });
-  }
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      // Logic: 200px card width + 20px gap = 220px per scroll
+      const scrollAmount = 220;
+      scrollRef.current.scrollBy({ 
+        left: direction === 'left' ? -scrollAmount : scrollAmount, 
+        behavior: 'smooth' 
+      });
+    }
+  };
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/nextjs/start/quickstart/nextjs-app-router-client-components/">
-          Review next steps of this tutorial.
-        </a>
+    <main className="page-wrapper">
+      {/* Navigation Menu */}
+      <nav className="nav-menu">
+        <a href="#" className="active-link">HOME</a>
+        <a href="#">ABOUT ME</a>
+        <a href="#">MY WORK</a>
+        <a href="#">SOCIAL</a>
+      </nav>
+
+      <div className="grid-container">
+        {/* Left 1/3: Main Profile Image */}
+        <div className="image-section">
+          <img 
+            src="/your-photo.png" 
+            alt="Abigail Durham" 
+            className="main-photo" 
+          />
+        </div>
+
+        {/* Right 2/3: Content */}
+        <div className="content-section">
+          {/* Replace the <h1> with your JPEG */}
+          <img 
+            src="/path-to-your-title.jpg" 
+            alt="Abigail Durham" 
+            className="name-title-img" 
+          />
+
+          <p className="bio-text">
+            I design products that empower users to achieve their goals and feel 
+            confident in their work. My passion is building personal connections 
+            and creating a positive, growth-oriented environment...
+          </p>
+
+          <div className="slider-area">
+            {/* Left Button */}
+            <button onClick={() => scroll('left')} className="nav-circle-btn">
+              <span>←</span>
+            </button>
+            
+            {/* The Arches Track */}
+            <div className="scroll-track" ref={scrollRef}>
+              <div className="arch-item"><img src="/work1.jpg" alt="" /></div>
+              <div className="arch-item"><img src="/work2.jpg" alt="" /></div>
+              <div className="arch-item"><img src="/work3.jpg" alt="" /></div>
+              <div className="arch-item"><img src="/work4.jpg" alt="" /></div>
+              <div className="arch-item"><img src="/work5.jpg" alt="" /></div>
+            </div>
+
+            {/* Right Button */}
+            <button onClick={() => scroll('right')} className="nav-circle-btn">
+              <span>→</span>
+            </button>
+          </div>
+        </div>
       </div>
     </main>
   );
