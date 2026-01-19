@@ -51,9 +51,9 @@ export default function Home() {
         </div>
 
         <div className="content-section">
-          {/* TITLE IMAGE: Ensure filename is exactly AbigailDurham.svg in /public */}
+          {/* TITLE IMAGE: The ?v=1 helps refresh the server's memory of the file */}
           <img 
-            src="/AbigailDurham.svg" 
+            src="/AbigailDurham.svg?v=1" 
             alt="Abigail Durham" 
             className="name-title-img" 
           />

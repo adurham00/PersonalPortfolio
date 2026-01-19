@@ -1,4 +1,3 @@
-/* 1. Reset and Global Styles */
 * {
   box-sizing: border-box;
 }
@@ -18,7 +17,6 @@ body {
   overflow-x: hidden;
 }
 
-/* 2. Layout Container */
 .grid-container {
   display: flex;
   flex-direction: column;
@@ -28,7 +26,7 @@ body {
   position: relative;
 }
 
-/* 3. Navigation (Mobile) */
+/* NAVIGATION */
 .nav-menu {
   display: flex;
   justify-content: center;
@@ -51,7 +49,7 @@ body {
   padding-bottom: 3px;
 }
 
-/* 4. Image Section */
+/* IMAGE SECTION */
 .image-section {
   width: 100%;
   height: 45vh;
@@ -64,7 +62,7 @@ body {
   object-fit: cover;
 }
 
-/* 5. Content Section */
+/* CONTENT SECTION */
 .content-section {
   padding: 40px 20px;
   display: flex;
@@ -73,12 +71,13 @@ body {
   text-align: center;
 }
 
-/* 6. Title & Bio */
+/* LOGO FIX */
 .name-title-img {
-  width: auto;
-  max-width: 90%; 
-  max-height: 80px;
-  margin-bottom: 20px;
+  display: block;
+  width: 300px; /* Force a width for the SVG */
+  height: auto;
+  max-width: 100%;
+  margin-bottom: 24px;
 }
 
 .bio-text {
@@ -89,7 +88,7 @@ body {
   margin-bottom: 40px;
 }
 
-/* 7. Arched Slider Area */
+/* SLIDER */
 .slider-area {
   width: 100%;
   display: flex;
@@ -128,22 +127,17 @@ body {
   object-fit: cover;
 }
 
-/* 8. Navigation Buttons (Brown to Light Flip) */
+/* BUTTONS */
 .nav-circle-btn {
   position: absolute;
   bottom: 10px; 
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  
-  /* Initial State: Brown Button */
-  border: none; 
-  background-color: var(--text-main); 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
-  
-  /* Icon Color: Beige */
-  color: var(--bg-color); 
-  
+  border: none;
+  background-color: var(--text-main);
+  color: var(--bg-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -151,28 +145,21 @@ body {
   z-index: 50;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0;
+  transition: all 0.3s ease;
 }
 
 .nav-circle-btn.prev { left: -20px; }
 .nav-circle-btn.next { right: -20px; }
 .nav-circle-btn.visible { opacity: 1; visibility: visible; }
 
-/* HOVER STATE: Light Flip + Lift */
 .nav-circle-btn:hover {
-  background-color: var(--bg-color); /* Turns Light */
-  color: var(--text-main); /* Icon turns Brown */
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
-/* Ensure SVG icon color follows the text color property */
-.nav-circle-btn svg {
-  stroke: currentColor;
-}
-
-/* 9. DESKTOP STYLES (Full Screen) */
+/* DESKTOP STYLES */
 @media (min-width: 1024px) {
   .grid-container {
     display: grid;
@@ -183,7 +170,7 @@ body {
   .nav-menu {
     position: absolute;
     top: 45px;
-    left: calc(45% + 60px); 
+    left: calc(45% + 35px); 
     justify-content: flex-start;
     width: auto;
     padding: 0;
@@ -202,41 +189,18 @@ body {
   }
 
   .name-title-img { 
-    max-height: 200px; 
-    max-width: 500px;
+    width: 500px; /* Larger logo on desktop */
   }
 
   .bio-text {
     max-width: 680px;
     font-size: 1.15rem;
-    line-height: 1.7;
   }
 
-  .slider-area { 
-    margin-top: auto; 
-    justify-content: flex-start; 
-  }
-
-  .scroll-track {
-    width: 680px; 
-    gap: 25px;
-  }
-
-  .arch-item {
-    min-width: 210px;
-    height: 225px;
-    border-radius: 105px 105px 20px 20px;
-  }
-
-  .nav-circle-btn {
-    width: 48px;
-    height: 48px;
-    bottom: 25px; 
-  }
-  
+  .slider-area { margin-top: auto; justify-content: flex-start; }
+  .scroll-track { width: 680px; gap: 25px; }
+  .arch-item { min-width: 210px; height: 225px; border-radius: 105px 105px 20px 20px; }
+  .nav-circle-btn { width: 48px; height: 48px; bottom: 25px; }
   .nav-circle-btn.prev { left: -24px; }
-  .nav-circle-btn.next { 
-    left: calc(680px - 24px); 
-    right: auto;
-  }
+  .nav-circle-btn.next { left: calc(680px - 24px); right: auto; }
 }
