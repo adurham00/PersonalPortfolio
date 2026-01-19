@@ -23,12 +23,12 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 1700px; /* Constrained for better editorial feel */
+  max-width: 1700px;
   margin: 0 auto;
   position: relative;
 }
 
-/* 3. Navigation */
+/* 3. Navigation (Mobile) */
 .nav-menu {
   display: flex;
   justify-content: center;
@@ -97,7 +97,7 @@ body {
 }
 
 .slider-controls-wrapper {
-  position: relative; /* Context for absolute arrows */
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -108,7 +108,7 @@ body {
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  width: 264px; /* (3 * 80px) + (2 * 12px) */
+  width: 264px;
 }
 
 .scroll-track::-webkit-scrollbar { display: none; }
@@ -128,49 +128,62 @@ body {
   object-fit: cover;
 }
 
-/* 8. Navigation Buttons (Mobile) */
+/* 8. Navigation Buttons (Brown to Light Flip) */
 .nav-circle-btn {
   position: absolute;
   bottom: 10px; 
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--text-main);
-  background: var(--bg-color);
-  color: var(--text-main);
+  
+  /* Initial State: Brown Button */
+  border: none; 
+  background-color: var(--text-main); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+  
+  /* Icon Color: Beige */
+  color: var(--bg-color); 
+  
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 20;
+  z-index: 50;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
 }
 
-.nav-circle-btn.prev { left: -18px; }
-.nav-circle-btn.next { right: -18px; }
+.nav-circle-btn.prev { left: -20px; }
+.nav-circle-btn.next { right: -20px; }
 .nav-circle-btn.visible { opacity: 1; visibility: visible; }
 
+/* HOVER STATE: Light Flip + Lift */
 .nav-circle-btn:hover {
-  background-color: var(--text-main);
-  color: white;
+  background-color: var(--bg-color); /* Turns Light */
+  color: var(--text-main); /* Icon turns Brown */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Ensure SVG icon color follows the text color property */
+.nav-circle-btn svg {
+  stroke: currentColor;
 }
 
 /* 9. DESKTOP STYLES (Full Screen) */
 @media (min-width: 1024px) {
   .grid-container {
     display: grid;
-    /* 45/55 split to push content right while leaving padding */
     grid-template-columns: 1.35fr 1.65fr; 
     column-gap: 40px;
   }
 
-  /* Nav Menu: Aligned with the content column start */
   .nav-menu {
     position: absolute;
     top: 45px;
-    left: calc(45% + 60px); 
+    left: calc(45% + 35px); 
     justify-content: flex-start;
     width: auto;
     padding: 0;
@@ -182,7 +195,6 @@ body {
   .image-section { height: 100vh; }
 
   .content-section {
-    /* 100px right padding creates the "Aesthetic Padding" you requested */
     padding: 120px 100px 40px 40px; 
     align-items: flex-start; 
     text-align: left;
@@ -206,26 +218,23 @@ body {
   }
 
   .scroll-track {
-    width: 680px; /* (3 * 210px) + (2 * 25px) */
+    width: 680px; 
     gap: 25px;
   }
 
   .arch-item {
     min-width: 210px;
-    height: 200px;
+    height: 225px;
     border-radius: 105px 105px 20px 20px;
   }
 
-  /* Navigation Buttons (Desktop) */
   .nav-circle-btn {
     width: 48px;
     height: 48px;
     bottom: 25px; 
-    font-size: 20px;
   }
   
   .nav-circle-btn.prev { left: -24px; }
-  /* Anchor 'next' button to the edge of the 3 visible arches */
   .nav-circle-btn.next { 
     left: calc(680px - 24px); 
     right: auto;
