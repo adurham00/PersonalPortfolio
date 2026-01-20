@@ -47,7 +47,7 @@ export default function Home() {
 
       <div className="grid-container">
         <div className="image-section">
-          <img src="/your-photo.png" alt="Abigail Durham" className="main-photo" />
+          <img src="/abby.jpg" alt="Abigail Durham" className="main-photo" />
         </div>
 
         <div className="content-section">
