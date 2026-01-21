@@ -1,0 +1,88 @@
+.work-page-wrapper {
+  padding: 40px 5%;
+  background: #fff; /* Match your site background */
+  min-height: 100vh;
+}
+
+.work-header {
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.section-title {
+  font-size: 3rem;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+
+.work-scroll-track {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  scrollbar-width: none; /* Hide scrollbar */
+}
+
+.work-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Maintain the arch shape */
+.work-card.arch-item {
+  min-width: 300px;
+  height: 450px;
+  border-radius: 150px 150px 20px 20px; /* The Arch Shape */
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-10px);
+}
+
+.arch-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.arch-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+}
+
+.work-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.project-category {
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.view-btn {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
