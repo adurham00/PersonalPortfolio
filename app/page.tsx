@@ -9,8 +9,9 @@ export default function Home() {
   const checkScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 5);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
+      // Using a small buffer for better reliability
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
   };
 
@@ -38,20 +39,26 @@ export default function Home() {
 
   return (
     <main className="page-wrapper">
-      <nav className="nav-menu">
-        <a href="#" className="active-link">HOME</a>
-        <a href="#">ABOUT ME</a>
-        <a href="#">MY WORK</a>
-        <a href="#">SOCIAL</a>
-      </nav>
-
       <div className="grid-container">
+        
+        {/* LEFT SECTION */}
         <div className="image-section">
-          <img src="/abby.jpg" alt="Abigail Durham" className="main-photo" />
+          <img 
+            src="/abby.jpg" 
+            alt="Abigail Durham" 
+            className="main-photo" 
+          />
         </div>
 
+        {/* RIGHT SECTION */}
         <div className="content-section">
-          {/* TITLE IMAGE: The ?v=1 helps refresh the server's memory of the file */}
+          <nav className="nav-menu">
+            <a href="#" className="active-link">HOME</a>
+            <a href="#">ABOUT ME</a>
+            <a href="#">MY WORK</a>
+            <a href="#">SOCIAL</a>
+          </nav>
+
           <img 
             src="/AbigailDurham.svg?v=1" 
             alt="Abigail Durham" 
@@ -64,7 +71,8 @@ export default function Home() {
             and creating a positive, growth-oriented environment.
           </p>
 
-          <div className="slider-area">
+          {/* This wrapper is the key fix to keep arches contained */}
+          <div className="slider-area" style={{ minWidth: 5, width: '100%' }}>
             <div className="slider-controls-wrapper">
               
               <button 
