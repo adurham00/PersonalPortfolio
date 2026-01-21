@@ -68,7 +68,7 @@ export default function Home() {
               className={view === 'work' ? 'active-link' : ''} 
               onClick={(e) => { e.preventDefault(); setView('work'); }}
             >MY WORK</a>
-            <a href="#">SOCIAL</a>
+            <a href="#">RESUME</a>
           </nav>
 
           {/* Conditional Content based on view state */}
