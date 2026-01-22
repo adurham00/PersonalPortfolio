@@ -17,7 +17,7 @@ export default function PortfolioPage() {
   const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % items.length);
   const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
 
-  const getIndex = (offset) => (currentIndex + offset + items.length) % items.length;
+  const getIndex = (offset: number) => (currentIndex + offset + items.length) % items.length;
 
   // Stable slots for the 3 positions
   const activeItems = [
