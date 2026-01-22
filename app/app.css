@@ -10,13 +10,14 @@
   --btn-active: #c2af9c; 
 }
 
-body {
+body, html {
   margin: 0;
   padding: 0;
   background-color: white;
   color: var(--text-main);
   font-family: 'Quicksand', sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .home-wrapper {
@@ -24,7 +25,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;      
+  justify-content: center;   
   padding: 20px 0;
 }
 
@@ -33,15 +35,14 @@ body {
   display: flex; 
   flex-wrap: wrap; 
   justify-content: center;
-  gap: clamp(15px, 3vw, 30px); 
-  margin-top: 30px; 
-  margin-bottom: 40px; 
+  gap: clamp(15px, 4vw, 40px); 
+  margin-bottom: clamp(20px, 4vh, 30px); /* Tighter gap to title */
 }
 
 .nav-link { 
   text-decoration: none; 
   color: var(--text-main); 
-  font-size: clamp(10px, 1.5vw, 13px); 
+  font-size: clamp(10px, 1.2vw, 14px); 
   text-transform: uppercase; 
   letter-spacing: 2px; 
   font-weight: 600;
@@ -65,24 +66,28 @@ body {
 
 .header-section { 
   text-align: center; 
-  margin-bottom: 40px; /* Increased gap between header and arches */
-  width: 90%; 
+  margin-bottom: clamp(25px, 5vh, 40px); 
+  width: 95%; 
 }
 
-.hero-title-svg { width: 100%; max-width: 550px; margin: 0 auto 20px auto; }
+.hero-title-svg { 
+  width: 100%; 
+  /* Reduced from 700px to 480px to keep it elegant on big screens */
+  max-width: clamp(280px, 40vw, 480px); 
+  margin: 0 auto 15px auto; 
+}
 .logo-img { width: 100%; height: auto; }
 
 /* --- SOCIAL ICONS --- */
 .contact-dots { 
   display: flex; 
   justify-content: center; 
-  gap: 15px; 
-  margin-top: 10px;
+  gap: 18px; 
 }
 
 .dot-btn { 
-  width: clamp(32px, 5vw, 36px); 
-  height: clamp(32px, 5vw, 36px); 
+  width: clamp(32px, 3vw, 38px); 
+  height: clamp(32px, 3vw, 38px); 
   border-radius: 50%; 
   border: 1px solid var(--text-main); 
   background: transparent; 
@@ -92,7 +97,6 @@ body {
   justify-content: center; 
   cursor: pointer; 
   transition: all 0.3s ease;
-  padding: 0;
 }
 
 .dot-btn:hover { 
@@ -101,16 +105,11 @@ body {
   transform: translateY(-2px);
 }
 
-.dot-btn svg {
-  width: 55%;
-  height: auto;
-}
-
 /* --- CAROUSEL STAGE --- */
 .carousel-container {
   position: relative;
   width: 100%;
-  height: clamp(450px, 70vh, 550px);
+  height: clamp(450px, 75vh, 700px); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,7 +122,7 @@ body {
   left: 0;
   right: 0;
   transform: translateY(-50%);
-  height: clamp(280px, 45vh, 380px);
+  height: clamp(300px, 50vh, 450px);
   background-color: var(--bg-light-grey);
   z-index: 0;
 }
@@ -131,7 +130,7 @@ body {
 .carousel-stage {
   position: relative;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1400px; 
   height: 100%;
   display: flex;
   justify-content: center;
@@ -154,50 +153,49 @@ body {
   justify-content: center;
   align-items: center;
   transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
 }
 
-/* Consistent Spacing */
-.box-wrapper.left { transform: translateX(-32vw); opacity: 0.5; }
-.box-wrapper.right { transform: translateX(32vw); opacity: 0.5; }
+.box-wrapper.left { transform: translateX(-30vw); opacity: 0.5; }
+.box-wrapper.right { transform: translateX(30vw); opacity: 0.5; }
 .box-wrapper.center { transform: translateX(0); opacity: 1; z-index: 5; }
 
-@media (min-width: 1200px) {
-  .box-wrapper.left { transform: translateX(-380px); }
-  .box-wrapper.right { transform: translateX(380px); }
+@media (min-width: 1400px) {
+  .box-wrapper.left { transform: translateX(-450px); }
+  .box-wrapper.right { transform: translateX(450px); }
 }
 
-/* Responsive Arch Sizes */
+/* Arch Sizes maintained for "large screen" feel */
 .left .image-box, .right .image-box {
-  width: clamp(130px, 20vw, 180px);
-  height: clamp(200px, 30vw, 280px);
-  border-radius: 90px 90px 0 0;
+  width: clamp(140px, 18vw, 220px); 
+  height: clamp(220px, 28vw, 340px); 
+  border-radius: 110px 110px 0 0;
 }
 
 .center .image-box {
-  width: clamp(240px, 35vw, 340px);
-  height: clamp(340px, 50vw, 480px);
-  border-radius: 170px 170px 0 0;
+  width: clamp(260px, 32vw, 420px); 
+  height: clamp(380px, 48vw, 600px); 
+  border-radius: 210px 210px 0 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
 .box-label {
-  margin-top: 20px;
-  font-size: clamp(9px, 1.2vw, 11px);
+  margin-top: 15px;
+  font-size: clamp(10px, 1.1vw, 13px); 
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
-  transition: all 0.7s ease;
 }
 
 /* --- ARROW BUTTONS --- */
 .controls-overlay {
   position: absolute;
-  width: 95%;
-  max-width: 1000px;
+  width: 94%;
+  max-width: 1250px; 
   display: flex;
   justify-content: space-between;
   top: 50%;
-  transform: translateY(60px); /* Adjusted for better alignment with larger arches */
+  transform: translateY(80px); 
   z-index: 10;
   pointer-events: none;
 }
@@ -206,8 +204,8 @@ body {
   background: #3D3227;
   color: white;
   border: none;
-  width: clamp(38px, 6vw, 50px);
-  height: clamp(38px, 6vw, 50px);
+  width: clamp(40px, 5vw, 55px); 
+  height: clamp(40px, 5vw, 55px);
   border-radius: 50%;
   cursor: pointer;
   display: flex; 
@@ -217,20 +215,17 @@ body {
   transition: all 0.3s ease;
 }
 
-.arrow-btn:hover { background: var(--text-main); transform: scale(1.1); }
-.arrow-btn:active { background: var(--btn-hover); transform: scale(0.9); }
-
 /* --- VIEW MORE BUTTON --- */
 .view-more-btn {
   display: inline-block;
-  margin-top: 30px;
-  padding: clamp(12px, 1.8vw, 16px) clamp(35px, 5vw, 55px);
+  margin-top: clamp(15px, 3vh, 30px);
+  padding: clamp(12px, 1.4vw, 16px) clamp(35px, 4vw, 60px);
   border: 1px solid var(--text-main);
-  border-radius: 30px;
+  border-radius: 40px;
   text-decoration: none;
   color: var(--text-main);
   text-transform: uppercase;
-  font-size: clamp(9px, 1.1vw, 11px);
+  font-size: clamp(9px, 0.9vw, 12px);
   font-weight: 700;
   letter-spacing: 2px;
   position: relative;
@@ -254,4 +249,4 @@ body {
 .view-more-btn:hover::before { top: 0; }
 .view-more-btn:hover span { transform: rotateX(360deg); }
 
-.footer-section { width: 100%; display: flex; justify-content: center; padding: 20px 0 60px 0; }
+.footer-section { width: 100%; display: flex; justify-content: center; padding: 15px 0 50px 0; }
