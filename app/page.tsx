@@ -1,134 +1,76 @@
 "use client";
-import { useRef, useState, useEffect } from 'react';
 
-export default function Home() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  
-  // NEW: State to toggle between Home and Work views
-  const [view, setView] = useState<'home' | 'work'>('home');
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, Instagram, Mail, Globe } from 'lucide-react';
 
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
+export default function PortfolioPage() {
+  const items = [
+    { id: 1, title: "Abstract Architecture" },
+    { id: 2, title: "Modern Minimalism" },
+    { id: 3, title: "Nature's Palette" },
+    { id: 4, title: "Urban Exploration" },
+    { id: 5, title: "Studio Portrait" },
+  ];
 
-  // Re-run scroll check if the view changes
-  useEffect(() => {
-    checkScroll();
-    window.addEventListener('resize', checkScroll);
-    return () => window.removeEventListener('resize', checkScroll);
-  }, [view]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const firstItem = scrollRef.current.querySelector('.arch-item');
-      if (firstItem) {
-        const itemWidth = (firstItem as HTMLElement).clientWidth;
-        const gap = parseInt(window.getComputedStyle(scrollRef.current).gap) || 25;
-        const scrollAmount = itemWidth + gap;
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % items.length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
 
-        scrollRef.current.scrollBy({ 
-          left: direction === 'left' ? -scrollAmount : scrollAmount, 
-          behavior: 'smooth' 
-        });
-      }
-    }
-  };
+  const getIndex = (offset) => (currentIndex + offset + items.length) % items.length;
+
+  // Stable slots for the 3 positions
+  const activeItems = [
+    { index: getIndex(-1), position: 'left' },
+    { index: getIndex(0), position: 'center' },
+    { index: getIndex(1), position: 'right' },
+  ];
 
   return (
-    <main className="page-wrapper">
-      <div className="grid-container">
-        
-        {/* LEFT SECTION */}
-        <div className="image-section">
-          <img 
-            src="/abby.jpg" 
-            alt="Abigail Durham" 
-            className="main-photo" 
-          />
+    <main className="home-wrapper">
+      <nav className="top-nav">
+        <a href="#" className="nav-link active">Home</a>
+        <a href="#" className="nav-link">About Me</a>
+        <a href="#" className="nav-link">My Work</a>
+        <a href="#" className="nav-link">Resume</a>
+      </nav>
+
+      <header className="header-section">
+        <div className="hero-title-svg">
+          <img src="/AbigailDurham2.svg" alt="Abigail Durham" className="logo-img" />
         </div>
+        <div className="contact-dots">
+          <button className="dot-btn"><Instagram size={16} /></button>
+          <button className="dot-btn"><Globe size={16} /></button>
+          <button className="dot-btn"><Mail size={16} /></button>
+        </div>
+      </header>
 
-        {/* RIGHT SECTION */}
-        <div className="content-section">
-          <nav className="nav-menu">
-            {/* Updated Links to handle state */}
-            <a 
-              href="#" 
-              className={view === 'home' ? 'active-link' : ''} 
-              onClick={(e) => { e.preventDefault(); setView('home'); }}
-            >HOME</a>
-            <a href="#">ABOUT ME</a>
-            <a 
-              href="#" 
-              className={view === 'work' ? 'active-link' : ''} 
-              onClick={(e) => { e.preventDefault(); setView('work'); }}
-            >MY WORK</a>
-            <a href="#">RESUME</a>
-          </nav>
+      <section className="carousel-container">
+        <div className="grey-backdrop-bar" />
 
-          {/* Conditional Content based on view state */}
-          {view === 'home' ? (
-            <>
-              <img 
-                src="/AbigailDurham.svg?v=1" 
-                alt="Abigail Durham" 
-                className="name-title-img" 
-              />
-              <p className="bio-text">
-                I design products that empower users to achieve their goals and feel 
-                confident in their work. My passion is building personal connections 
-                and creating a positive, growth-oriented environment.
-              </p>
-            </>
-          ) : (
-            <>
-              <h1 style={{ fontSize: '2.5rem', marginBottom: '10px' }}>MY WORK</h1>
-              <p className="bio-text">
-                A collection of my recent design projects and creative explorations.
-              </p>
-            </>
-          )}
-
-          <div className="slider-area" style={{ minWidth: 5, width: '100%' }}>
-            <div className="slider-controls-wrapper">
-              
-              <button 
-                onClick={() => scroll('left')} 
-                className={`nav-circle-btn prev ${canScrollLeft ? 'visible' : ''}`}
-                aria-label="Scroll Left"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              
-              <div className="scroll-track" ref={scrollRef} onScroll={checkScroll}>
-                {/* These will appear for both Home and Work, or you can separate them inside the track */}
-                <div className="arch-item"><img src="/work1.jpg" alt="Work 1" /></div>
-                <div className="arch-item"><img src="/work2.jpg" alt="Work 2" /></div>
-                <div className="arch-item"><img src="/work3.jpg" alt="Work 3" /></div>
-                <div className="arch-item"><img src="/work4.jpg" alt="Work 4" /></div>
-                <div className="arch-item"><img src="/work5.jpg" alt="Work 5" /></div>
+        <div className="carousel-stage">
+          {activeItems.map((slot) => (
+            <div 
+              key={items[slot.index].id} 
+              className={`box-wrapper ${slot.position}`}
+            >
+              <div className="image-box">
+                <span className="placeholder-q">?</span>
               </div>
-
-              <button 
-                onClick={() => scroll('right')} 
-                className={`nav-circle-btn next ${canScrollRight ? 'visible' : ''}`}
-                aria-label="Scroll Right"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-              
+              <p className="box-label">{items[slot.index].title}</p>
             </div>
-          </div>
+          ))}
         </div>
+
+        <div className="controls-overlay">
+          <button className="arrow-btn" onClick={prevSlide}><ChevronLeft size={24} /></button>
+          <button className="arrow-btn" onClick={nextSlide}><ChevronRight size={24} /></button>
+        </div>
+      </section>
+
+      <div className="footer-section">
+        <a href="#" className="view-more-btn">View More</a>
       </div>
     </main>
   );

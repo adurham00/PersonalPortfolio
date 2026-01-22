@@ -1,215 +1,248 @@
-/* --- RESET & VARIABLES --- */
-* {
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; }
 
 :root {
-  --bg-color: white;
-  --text-main: #4a3728;
-  --accent-gray: #d1d1d1;
+  --text-main: #5C4D3C;
+  --accent-gray: #d9d9d9;
+  --bg-light-grey: #F2F2F2;
+  --btn-hover: #c5b3a1;  
+  --btn-active: #c2af9c; 
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-color);
+  background-color: white;
   color: var(--text-main);
-  font-family: "Nunito", system-ui, sans-serif;
-  overflow: hidden; /* Keeps desktop "app-like" and fits to screen */
+  font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden;
 }
 
-/* --- LAYOUT STRUCTURE --- */
-.grid-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.image-section {
+.home-wrapper {
   width: 100%;
-  height: 40vh;
-}
-
-.main-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center middle;
-  border-top: 0px solid var(--bg-color);
-  border-bottom: 0px solid var(--bg-color);
-  filter: drop-shadow(14px 4px 4px rgba(65, 65, 65, 0.1));
-}
-
-.content-section {
-  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  flex: 1;
-  overflow-y: auto;
+  padding: 40px 0;
 }
 
-/* --- NAVIGATION & TITLE --- */
-.nav-menu {
-  display: flex;
-  gap: clamp(20px, 3vw, 40px);
-  margin-bottom: 30px;
-  margin-top: 10px;
-}
+/* --- NAV & HEADER --- */
+.top-nav { display: flex; gap: 30px;margin-top: 30px; margin-bottom: 30px; }
 
-.nav-menu a {
-  text-decoration: none;
-  color: var(--text-main);
-  font-size: 16px; 
+.nav-link { 
+  text-decoration: none; 
+  color: var(--text-main); 
+  font-size: 13px; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  position: relative; /* Required to position the underline */
-  padding-bottom: 6px;
-}
-
-/* Create the rounded underline */
-.active-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px; /* This is your underline thickness */
-  background-color: var(--text-main);
-  border-radius: 10px; /* This makes the ends round */
-}
-
-.name-title-img {
-  width: clamp(280px, 30vw, 420px);
-  max-width: 90%;
-  height: auto;
-  margin-bottom: 15px;
-}
-
-.bio-text {
-  max-width: 800px;
-  line-height: 1.5;
-  margin-bottom: 30px;
-  font-size: 16px;
-}
-
-/* --- THE ARCH SLIDER --- */
-.slider-area {
-  width: 100%;
   position: relative;
-  margin-top: auto; 
+  transition: color 0.3s ease;
 }
 
-.scroll-track {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-  padding: 10px 0 60px 0; /* Padding to prevent button overlap */
-  scroll-behavior: smooth;
-}
-
-.scroll-track::-webkit-scrollbar {
-  display: none;
-}
-
-.arch-item {
-  flex: 0 0 calc((100% - 20px) / 2.2); 
-  aspect-ratio: 4 / 5.5; 
-  max-height: 250px; 
-  background-color: var(--accent-gray);
-  border-radius: 1000px 1000px 60px 60px;
-  overflow: hidden;
-  flex-shrink: 0;
-  scroll-snap-align: center;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
-}
-
-.arch-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* --- BUTTONS (ADJUSTED POSITION) --- */
-.nav-circle-btn {
+/* Nav Underline Effect */
+.nav-link::after {
+  content: '';
   position: absolute;
-  /* Moved up slightly from the very bottom */
-  bottom: 40px; 
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: var(--text-main);
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--btn-hover);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover { color: var(--btn-hover); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+.header-section { text-align: center; margin-bottom: 20px; }
+.hero-title-svg { width: clamp(300px, 50vw, 550px); margin-bottom: 20px; }
+.logo-img { width: 100%; height: auto; }
+
+.contact-dots { display: flex; justify-content: center; gap: 12px; }
+.dot-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--text-main); background: transparent; color: var(--text-main); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+.dot-btn:hover { background: var(--text-main); color: white; }
+
+/* --- CAROUSEL STAGE --- */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grey-backdrop-bar {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  height: 380px;
+  background-color: var(--bg-light-grey);
+  z-index: 0;
+}
+
+.carousel-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.box-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-box {
+  background-color: var(--accent-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- STATES --- */
+.box-wrapper.left { transform: translateX(-360px); opacity: 0.5; }
+.box-wrapper.right { transform: translateX(360px); opacity: 0.5; }
+
+.left .image-box, .right .image-box {
+  width: 180px;
+  height: 280px;
+  border-radius: 90px 90px 0 0;
+}
+
+.box-wrapper.center { transform: translateX(0); opacity: 1; z-index: 5; }
+.center .image-box {
+  width: 340px;
+  height: 480px;
+  border-radius: 170px 170px 0 0;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* --- LABELS --- */
+.box-label {
+  margin-top: 24px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  transition: all 0.7s ease;
+}
+
+.left .box-label, .right .box-label {
+  opacity: 0.6;
+  transform: scale(0.9);
+}
+
+.center .box-label {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- ARROW BUTTONS --- */
+.controls-overlay {
+  position: absolute;
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  transform: translateY(50px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.arrow-btn {
+  background: #3D3227;
   color: white;
   border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   cursor: pointer;
-  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.2s;
-}
-
-.nav-circle-btn.visible {
-  opacity: 1;
   pointer-events: auto;
+  transition: 0.3s ease;
 }
 
-.nav-circle-btn.prev { 
-  left: 10px; 
+.arrow-btn:hover { background: var(--text-main); transform: scale(1.1); }
+.arrow-btn:active { background: var(--btn-hover); transform: scale(0.95); }
+
+/* --- VIEW MORE BUTTON (FILL & FLIP) --- */
+.view-more-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 50px;
+  border: 1px solid var(--text-main);
+  border-radius: 30px;
+  text-decoration: none;
+  color: var(--text-main);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s ease;
+  perspective: 1000px; /* Enables 3D perspective for the flip */
 }
 
-.nav-circle-btn.next { 
-  right: 10px; /* Standard mobile position */
+/* Background Fill Effect */
+.view-more-btn::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--text-main);
+  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
 }
 
-/* --- DESKTOP STYLES --- */
-@media (min-width: 1024px) {
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1.2fr 1.8fr;
-    height: 100vh;
-    overflow: hidden;
-  }
+.view-more-btn span {
+  display: inline-block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+}
 
-  .image-section { height: 100vh; }
+/* Hover States */
+.view-more-btn:hover {
+  color: white;
+  border-color: var(--text-main);
+}
 
-  .content-section {
-    height: 100vh;
-    padding: 3vh 5vw;
-    align-items: flex-start;
-    text-align: left;
-    justify-content: space-between;
-    overflow: hidden;
-  }
+.view-more-btn:hover::before {
+  top: 0;
+}
 
-  /* EXACTLY 3 ARCHES LOGIC */
-  .arch-item {
-    flex: 0 0 calc((100% - 40px) / 3); 
-    max-height: 38vh; 
-    scroll-snap-align: start;
-  }
+.view-more-btn:hover span {
+  transform: rotateX(360deg); /* The Text Flip */
+}
 
-  /* DESKTOP BUTTON POSITIONING */
-  .nav-circle-btn {
-    bottom: 55px; /* Pulls up slightly more on desktop */
-  }
+/* Active/Click State */
+.view-more-btn:active {
+  transform: scale(0.96);
+  background-color: var(--btn-active);
+  border-color: var(--btn-active);
+}
 
-  .nav-circle-btn.prev { 
-    left: -25px; /* Offset to the left */
-  }
-
-  .nav-circle-btn.next { 
-    right: -10px; /* Pushed further to the right as requested */
-  }
-  
-  .nav-circle-btn:hover {
-    transform: scale(1.1);
-    background-color: #33251a;
-  }
+.footer-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
