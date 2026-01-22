@@ -6,7 +6,7 @@
   --text-main: #5C4D3C;
   --accent-gray: #d9d9d9;
   --bg-light-grey: #F2F2F2;
-  --btn-hover: #c5b3a1;  
+  --btn-hover: #524b45;  
   --btn-active: #c2af9c; 
 }
 
@@ -42,7 +42,7 @@ body, html {
 .nav-link { 
   text-decoration: none; 
   color: var(--text-main); 
-  font-size: clamp(10px, 1.2vw, 14px); 
+  font-size: clamp(10px, 1.2vw, 16px); 
   text-transform: uppercase; 
   letter-spacing: 2px; 
   font-weight: 600;
@@ -179,7 +179,7 @@ body, html {
 
 .box-label {
   margin-top: 15px;
-  font-size: clamp(10px, 1.1vw, 13px); 
+  font-size: clamp(10px, 1.1vw, 14px); 
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
@@ -238,7 +238,7 @@ body, html {
   text-decoration: none;
   color: var(--text-main);
   text-transform: uppercase;
-  font-size: clamp(9px, 0.9vw, 12px);
+  font-size: clamp(9px, 0.9vw, 14px);
   font-weight: 700;
   letter-spacing: 2px;
   position: relative;
