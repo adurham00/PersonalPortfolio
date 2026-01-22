@@ -34,8 +34,8 @@ body {
   flex-wrap: wrap; 
   justify-content: center;
   gap: clamp(15px, 3vw, 30px); 
-  margin-top: 20px; 
-  margin-bottom: 30px; 
+  margin-top: 30px; 
+  margin-bottom: 40px; 
 }
 
 .nav-link { 
@@ -110,7 +110,7 @@ body {
 .carousel-container {
   position: relative;
   width: 100%;
-  height: clamp(450px, 70vh, 600px);
+  height: clamp(450px, 70vh, 550px);
   display: flex;
   justify-content: center;
   align-items: center;
