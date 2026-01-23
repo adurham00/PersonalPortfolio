@@ -128,10 +128,10 @@ body, html {
 
 .grey-backdrop-bar {
   position: absolute;
-  top: 55%; /* Centered vertically within the container */
+  top: 50%; /* Centered vertically within the container */
   left: 0;
   right: 0;
-  transform: translateY(-60%);
+  transform: translateY(-56%);
   height: clamp(200px, 45vh, 375px);
   background-color: var(--bg-light-grey);
   z-index: 0;
@@ -244,9 +244,9 @@ body, html {
   display: inline-block;
   /* Negative margin pulls the button up closer to the arches */
   margin-top: -25px; 
-  padding: 12px 45px;
+  padding: 12px 40px;
   border: 1px solid var(--text-main);
-  border-radius: 40px;
+  border-radius: 30px;
   text-decoration: none;
   color: var(--text-main);
   text-transform: uppercase;
