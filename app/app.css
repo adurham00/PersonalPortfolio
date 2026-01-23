@@ -26,9 +26,8 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;      
-  /* Changed to flex-start with padding to prevent top cutoff */
-  justify-content: flex-start; 
-  padding: 5vh 0 20px 0; 
+  justify-content: center;   
+  padding: 30px 0; /* Reduced padding to help tighten vertical space */
 }
 
 /* --- NAV & HEADER --- */
@@ -36,8 +35,8 @@ body, html {
   display: flex; 
   flex-wrap: wrap; 
   justify-content: center;
-  gap: clamp(15px, 4vw, 30px); 
-  margin-bottom: 20px;
+  gap: clamp(15px, 4vw, 40px); 
+  margin-bottom: clamp(10px, 2vh, 20px);
 }
 
 .nav-link { 
@@ -54,8 +53,10 @@ body, html {
 .nav-link::after {
   content: '';
   position: absolute;
-  width: 0; height: 2px;
-  bottom: -4px; left: 0;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
   background-color: var(--btn-hover);
   transition: width 0.3s ease;
 }
@@ -65,28 +66,28 @@ body, html {
 
 .header-section { 
   text-align: center; 
-  margin-bottom: 25px; 
+  margin-bottom: -15px; /* Pulls the carousel up toward the logo */
   width: 95%; 
+  z-index: 10;
 }
 
 .hero-title-svg { 
   width: 100%; 
-  max-width: clamp(250px, 35vw, 300px); 
-  margin: 0 auto 10px auto; 
+  max-width: clamp(280px, 40vw, 380px); 
+  margin: 0 auto 15px auto; 
 }
 .logo-img { width: 100%; height: auto; }
 
+/* --- SOCIAL ICONS --- */
 .contact-dots { 
   display: flex; 
   justify-content: center; 
-  gap: 15px; 
+  gap: 18px; 
 }
 
 .dot-btn { 
-  /* min: 30px, preferred: 3vw, max: 42px */
-  width: clamp(30px, 3vw, 35px); 
-  height: clamp(30px, 3vw, 35px); 
-  
+  width: 32px; 
+  height: 32px; 
   border-radius: 50%; 
   border: 1px solid var(--text-main); 
   background: transparent; 
@@ -95,35 +96,42 @@ body, html {
   align-items: center; 
   justify-content: center; 
   cursor: pointer; 
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Ensure the icons inside scale proportionally to the circle */
-.dot-btn svg {
-  width: 80%;
-  height: 80%;
+.dot-btn:hover { 
+  background: var(--text-main); 
+  color: white; 
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dot-btn:active {
+  transform: translateY(1px) scale(0.92);
+  background: var(--btn-active);
+  border-color: var(--btn-active);
+  transition: all 0.1s ease;
 }
 
 /* --- CAROUSEL STAGE --- */
 .carousel-container {
   position: relative;
   width: 100%;
-  /* Fixed height to prevent squishing */
-  height: clamp(400px, 65vh, 40px); 
+  /* Adjusted height to prevent excessive bottom gap */
+  height: clamp(400px, 70vh, 600px); 
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  margin: 10px 0;
 }
 
 .grey-backdrop-bar {
   position: absolute;
-  top: 50%;
+  top: 50%; /* Centered vertically within the container */
   left: 0;
   right: 0;
-  transform: translateY(-55%);
-  height: clamp(250px, 45vh, 320px);
+  transform: translateY(-50%);
+  height: clamp(200px, 45vh, 400px);
   background-color: var(--bg-light-grey);
   z-index: 0;
 }
@@ -131,7 +139,7 @@ body, html {
 .carousel-stage {
   position: relative;
   width: 100%;
-  max-width: 1200px; 
+  max-width: 1100px; 
   height: 100%;
   display: flex;
   justify-content: center;
@@ -153,31 +161,37 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
 }
 
-/* Locked the spacing closer together */
-.box-wrapper.left { transform: translateX(-22vw); opacity: 0.5; }
-.box-wrapper.right { transform: translateX(22vw); opacity: 0.5; }
+/* Fixed spacing between arches using clamp to limit the max gap */
+.box-wrapper.left { 
+  transform: translateX(clamp(-400px, -20vw, -150px)); 
+  opacity: 0.5; 
+}
+.box-wrapper.right { 
+  transform: translateX(clamp(150px, 20vw, 400px)); 
+  opacity: 0.5; 
+}
 .box-wrapper.center { transform: translateX(0); opacity: 1; z-index: 5; }
 
-/* Locked max width/height so they don't grow too large */
 .left .image-box, .right .image-box {
-  width: clamp(130px, 16vw, 180px); 
-  height: clamp(200px, 25vw, 250px); 
-  border-radius: 5px 5px 5px 5px;
+  width: clamp(140px, 18vw, 200px); 
+  height: clamp(220px, 28vw, 250px); 
+  border-radius: 110px 110px 0 0;
 }
 
 .center .image-box {
-  width: clamp(240px, 30vw, 340px); 
-  height: clamp(350px, 45vw, 350px); 
-  border-radius: 5px 5px 5px 5px;
+  width: clamp(200px, 32vw, 300px); 
+  height: clamp(300px, 48vw, 375px); 
+  border-radius: 210px 210px 0 0;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
 .box-label {
-  margin-top: 12px;
-  font-size: 11px;
+  margin-top: 15px;
+  font-size: clamp(10px, 1.1vw, 14px); 
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
@@ -186,12 +200,12 @@ body, html {
 /* --- ARROW BUTTONS --- */
 .controls-overlay {
   position: absolute;
-  width: 90%;
-  max-width: 1000px; 
+  width: 94%;
+  max-width: 1180px; 
   display: flex;
   justify-content: space-between;
   top: 50%;
-  transform: translateY(60px); 
+  transform: translateY(80px); 
   z-index: 10;
   pointer-events: none;
 }
@@ -200,34 +214,68 @@ body, html {
   background: #3D3227;
   color: white;
   border: none;
-  width: 45px; height: 45px;
+  width: clamp(40px, 5vw, 55px); 
+  height: clamp(40px, 5vw, 55px);
   border-radius: 50%;
   cursor: pointer;
   display: flex; 
   align-items: center; 
   justify-content: center;
   pointer-events: auto;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+.arrow-btn:hover {
+  background: #5f4b2f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.arrow-btn:active {
+  background: var(--btn-active);
+  transform: translateY(1px) scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- VIEW MORE BUTTON --- */
+.view-more-btn {
+  display: inline-block;
+  /* Negative margin pulls the button up closer to the arches */
+  margin-top: -25px; 
+  padding: 12px 45px;
+  border: 1px solid var(--text-main);
+  border-radius: 40px;
+  text-decoration: none;
+  color: var(--text-main);
+  text-transform: uppercase;
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s ease;
+  perspective: 1000px;
+}
+
+.view-more-btn::before {
+  content: '';
+  position: absolute;
+  top: 100%; left: 0; width: 100%; height: 100%;
+  background-color: var(--text-main);
+  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.view-more-btn span { display: inline-block; transition: transform 0.5s ease; }
+.view-more-btn:hover { color: white; }
+.view-more-btn:hover::before { top: 0; }
+.view-more-btn:hover span { transform: rotateX(360deg); }
 
 .footer-section { 
   width: 100%; 
   display: flex; 
   justify-content: center; 
-  padding: 20px 0 40px 0; 
+  padding: 10px 0 40px 0; 
 }
-
-.view-more-btn {
-  padding: 12px 40px;
-  border: 1px solid var(--text-main);
-  border-radius: 30px;
-  text-decoration: none;
-  color: var(--text-main);
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-}
-
-.view-more-btn:hover { background: var(--text-main); color: white; }
