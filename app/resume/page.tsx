@@ -18,12 +18,13 @@ export default function ResumePage() {
       <section style={{ maxWidth: '900px', width: '90%', margin: '0 auto', padding: '80px 0' }}>
         <header style={{ marginBottom: '60px' }}>
           <h1 style={{ 
-            fontSize: 'clamp(32px, 5vw, 60px)', 
+            fontSize: 'clamp(30px, 10vw, 50px)', 
             fontWeight: '400',
             textTransform: 'uppercase', 
             letterSpacing: '-1px',
             lineHeight: '1',
-            margin: 0
+            margin: 0,
+            color: '#4A3728',
           }}>
             Credentials
           </h1>
@@ -31,17 +32,6 @@ export default function ResumePage() {
             <p style={{ opacity: 0.5, marginTop: '10px', fontSize: '14px', letterSpacing: '1px', margin: 0 }}>
               Available for freelance and full-time opportunities.
             </p>
-            <Link href="mailto:hello@abigaildurham.com" style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              textDecoration: 'none',
-              color: '#000',
-              fontWeight: '600',
-              fontSize: '13px'
-            }}>
-              Get in touch <Mail size={16} />
-            </Link>
           </div>
         </header>
 

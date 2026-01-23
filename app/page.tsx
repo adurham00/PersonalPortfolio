@@ -38,7 +38,7 @@ export default function PortfolioPage() {
       `}</style>
 
       {/* Navigation */}
-      <nav className="top-nav" style={{ paddingBottom: '10px' }}>
+      <nav className="top-nav" style={{ paddingBottom: '20px' }}>
         <Link href="/" className="nav-link active">Home</Link>
         <Link href="/aboutme" className="nav-link">About Me</Link>
         <Link href="/mywork" className="nav-link">My Work</Link>
@@ -46,23 +46,30 @@ export default function PortfolioPage() {
       </nav>
 
       {/* Hero / Logo Section */}
-      <header className="header-section" style={{ textAlign: 'center', marginTop: '-15px', paddingBottom: '20px' }}>
+      <header 
+        className="header-section" 
+        style={{ 
+          textAlign: 'center', 
+          marginTop: '-10px',   // Pushes the entire section down from the Nav
+          paddingTop: '-50px',  // Adds internal space at the top of the header
+          paddingBottom: '0px' 
+        }}
+      >
         <div className="hero-title-text">
-          <h1 style={{ 
-            fontFamily: '"Playfair Display", serif',
-            fontSize: '52px',
-            fontWeight: '400',
-            textTransform: 'uppercase',
-            color: colors.primary,
-            letterSpacing: '2px',
-            margin: '0',
-            lineHeight: '1.1'
-          }}>
-            Abigail Durham
-          </h1>
+          <img 
+            src="/AbigailDurham2.svg" 
+            alt="Abigail Durham" 
+            style={{ 
+              maxWidth: '450px', 
+              width: '90%', 
+              height: 'auto',
+              display: 'block',
+              margin: '0 auto'
+            }} 
+          />
         </div>
         
-        <div className="contact-dots" style={{ marginTop: '12px' }}>
+        <div className="contact-dots" style={{ marginTop: '20px' }}>
           <a href="#" className="dot-btn"><Instagram size={18} /></a>
           <a href="#" className="dot-btn"><PhoneCall size={18} /></a>
           <a href="#" className="dot-btn"><Mail size={18} /></a>
@@ -79,14 +86,14 @@ export default function PortfolioPage() {
             return (
               <div key={item.id} className={`box-wrapper ${slot.position}`}>
                 <div className="image-box" style={{ 
-                  aspectRatio: '1 / 1', // The box stays a fixed square
+                  aspectRatio: '1 / 1', 
                   overflow: 'hidden', 
-                  backgroundColor: '#ffffff', // Clean background for the "empty" spaces
+                  backgroundColor: '#ffffff', 
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   position: 'relative',
-                  padding: '10px' // Optional: adds a small breathing room inside the square
+                  padding: '10px' 
                 }}>
                   {item.image ? (
                     <img 
@@ -95,7 +102,7 @@ export default function PortfolioPage() {
                       style={{ 
                         width: '100%', 
                         height: '100%', 
-                        objectFit: 'contain', // SHOWN WHOLE: scales image to fit without cropping
+                        objectFit: 'contain', 
                         display: 'block' 
                       }}
                     />

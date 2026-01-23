@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Instagram, Mail, PhoneCall, ArrowLeft } from 'lucide-react';
 
+
 export default function AboutMe() {
   return (
     <main className="home-wrapper">
@@ -56,9 +57,8 @@ export default function AboutMe() {
           textTransform: 'uppercase', 
           letterSpacing: '0.04em',
           marginBottom: '24px',
-          color: 'var(--text-main)',
-          fontFamily: '"Playfair Display", "Times New Roman", serif',
-          fontWeight: '400'
+          fontWeight: '400',
+          color: '#4A3728',
         }}>
           About Me
         </h1>
@@ -67,7 +67,6 @@ export default function AboutMe() {
           <div style={{ 
             lineHeight: '1.9', 
             fontSize: '17px', 
-            color: 'var(--text-main)',
             marginBottom: '30px'
           }}>
             <p>

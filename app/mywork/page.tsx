@@ -44,7 +44,7 @@ export default function MyWork() {
             Portfolio
           </span>
           <h1 style={{ 
-            fontSize: 'clamp(40px, 10vw, 40px)',  
+            fontSize: 'clamp(30px, 10vw, 50px)',  
             fontWeight: '400',
             textTransform: 'uppercase', 
             letterSpacing: '0px', 
@@ -52,7 +52,7 @@ export default function MyWork() {
             lineHeight: '0.85',
             /* 3. REDUCED MARGIN TOP (from 15px to 5px) */
             marginTop: '5px',
-            fontFamily: '"Playfair Display", "Times New Roman", serif'
+  
           }}>
             Selected <br /> Works
           </h1>
@@ -111,16 +111,27 @@ export default function MyWork() {
           ))}
         </div>
 
-        <footer style={{ margin: '100px 0 60px 0', textAlign: 'center' }}>
-          <div style={{ marginBottom: '40px', display: 'flex', justifyContent: 'center', gap: '30px' }}>
-            <Link href="#" style={{ color: colors.primary }}><Instagram size={22} /></Link>
-            <Link href="#" style={{ color: colors.primary }}><PhoneCall size={22} /></Link>
-            <Link href="#" style={{ color: colors.primary }}><Mail size={22} /></Link>
-          </div>
-          <p style={{ fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: colors.secondary, opacity: 0.6 }}>
-            Abigail Durham © 2026
-          </p>
-        </footer>
+       <footer style={{ margin: '100px 0 60px 0', textAlign: 'center' }}>
+  {/* Changed textAlign to center */}
+  <div className="contact-section" style={{ textAlign: 'center' }}>
+    <h3 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '13px', marginBottom: '15px', opacity: 0.8 }}>
+      {/* Title text here if needed */}
+    </h3>
+    
+    {/* Changed justifyContent to center */}
+    <div className="contact-dots" style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+      <a href="https://instagram.com" target="_blank" className="dot-btn" aria-label="Instagram">
+        <Instagram size={18} />
+      </a>
+      <a href="tel:+1234567890" className="dot-btn" aria-label="Phone">
+        <PhoneCall size={18} />
+      </a>
+      <a href="mailto:hello@abigaildurham.com" className="dot-btn" aria-label="Email">
+        <Mail size={18} />
+      </a>
+    </div>
+  </div>
+</footer>
       </section>
 
       <style jsx>{`
