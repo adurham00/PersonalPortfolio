@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Instagram, Mail, Globe } from 'lucide-react';
+import Link from 'next/link'; // Import Link for Next.js navigation
+import { ChevronLeft, ChevronRight, Instagram, Mail, PhoneCall } from 'lucide-react';
 
-// Use the data structure from your code
 const items = [
   { id: 1, title: "Abstract Architecture" },
   { id: 2, title: "Modern Minimalism" },
@@ -18,7 +18,6 @@ export default function PortfolioPage() {
   const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % items.length);
   const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
 
-  // Helper to find index relative to current
   const getIndex = (offset: number) => (currentIndex + offset + items.length) % items.length;
 
   const activeItems = [
@@ -29,12 +28,12 @@ export default function PortfolioPage() {
 
   return (
     <main className="home-wrapper">
-      {/* Navigation */}
+      {/* Navigation - Linked to your .tsx pages */}
       <nav className="top-nav">
-        <a href="#" className="nav-link active">Home</a>
-        <a href="#" className="nav-link">About Me</a>
-        <a href="#" className="nav-link">My Work</a>
-        <a href="#" className="nav-link">Resume</a>
+        <Link href="/" className="nav-link active">Home</Link>
+        <Link href="/aboutme" className="nav-link">About Me</Link>
+        <Link href="/mywork" className="nav-link">My Work</Link>
+        <Link href="/resume" className="nav-link">Resume</Link>
       </nav>
 
       {/* Hero / Logo Section */}
@@ -46,10 +45,18 @@ export default function PortfolioPage() {
             className="logo-img" 
           />
         </div>
+        
+        {/* Social Icons - Now functional links */}
         <div className="contact-dots">
-          <button className="dot-btn" aria-label="Instagram"><Instagram size={18} /></button>
-          <button className="dot-btn" aria-label="Website"><Globe size={18} /></button>
-          <button className="dot-btn" aria-label="Email"><Mail size={18} /></button>
+          <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" className="dot-btn" aria-label="Instagram">
+            <Instagram size={18} />
+          </a>
+          <a href="tel:+1234567890" className="dot-btn" aria-label="Phone">
+            <PhoneCall size={18} />
+          </a>
+          <a href="mailto:hello@abigaildurham.com" className="dot-btn" aria-label="Email">
+            <Mail size={18} />
+          </a>
         </div>
       </header>
 
@@ -64,7 +71,6 @@ export default function PortfolioPage() {
               className={`box-wrapper ${slot.position}`}
             >
               <div className="image-box">
-                {/* Placeholders for your portfolio images */}
                 <span className="placeholder-q" style={{ opacity: 0.2 }}>?</span>
               </div>
               <p className="box-label">{items[slot.index].title}</p>
@@ -72,7 +78,7 @@ export default function PortfolioPage() {
           ))}
         </div>
 
-        {/* Buttons */}
+        {/* Arrow Controls */}
         <div className="controls-overlay">
           <button className="arrow-btn" onClick={prevSlide}>
             <ChevronLeft size={24} />
@@ -83,9 +89,11 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer - Linked to My Work */}
       <div className="footer-section">
-        <a href="#" className="view-more-btn">View More</a>
+        <Link href="/mywork" className="view-more-btn">
+          <span>View More</span>
+        </Link>
       </div>
     </main>
   );
