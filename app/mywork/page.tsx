@@ -4,11 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import { Instagram, Mail, PhoneCall, ArrowRight } from 'lucide-react';
 
+// 1. Updated: Added 'slug' to match the keys in your projectDetails database
 const projects = [
-  { id: 1, title: "Institutional", category: "2024 Collection", image: "/homepage.png" },
-  { id: 2, title: "Case Studies", category: "Series 01", image: "/animal.png" },
-  { id: 3, title: "Creative Labs", category: "Editorial", image: "/sketchbook.png" },
-  { id: 4, title: "Systems", category: "Campaign", image: "/code.png" },
+  { id: 1, title: "BYU Student UI/UX Assitant", category: "Library Website", image: "/homepage.png", slug: "institutional" },
+  { id: 2, title: "Personal Case Studies", category: "Wireframes and Figma", image: "/animal.png", slug: "case-studies" },
+  { id: 3, title: "Creative Works", category: "Sketchbook and 3D Samples", image: "/sketchbook.png", slug: "creative-labs" },
+  { id: 4, title: "Computer Systems", category: "CS Minor coursework", image: "/code.png", slug: "systems" },
 ];
 
 const colors = {
@@ -30,13 +31,11 @@ export default function MyWork() {
         </div>
       </nav>
 
-      {/* 1. REDUCED SECTION PADDING (from 80px to 40px) */}
       <section style={{ maxWidth: '1600px', width: '95%', margin: '0 auto', padding: '40px 0' }}>
         
-        {/* 2. REDUCED HEADER MARGIN (from 100px to 40px) */}
         <header style={{ marginBottom: '40px', textAlign: 'center' }}>
           <span style={{ 
-            fontSize: 'clamp(12px, 1.2vw, 12px)', 
+            fontSize: 'clamp(16px, 1.2vw, 16px)', 
             letterSpacing: '4px', 
             textTransform: 'uppercase', 
             color: colors.secondary 
@@ -47,12 +46,9 @@ export default function MyWork() {
             fontSize: 'clamp(30px, 10vw, 50px)',  
             fontWeight: '400',
             textTransform: 'uppercase', 
-            letterSpacing: '0px', 
             color: colors.primary,
             lineHeight: '0.85',
-            /* 3. REDUCED MARGIN TOP (from 15px to 5px) */
             marginTop: '5px',
-  
           }}>
             Selected <br /> Works
           </h1>
@@ -72,38 +68,58 @@ export default function MyWork() {
               }}
             >
               <div style={{ width: '50%', minWidth: '350px', position: 'relative' }}>
-                <div 
-                  className="image-shadow-wrapper"
-                  style={{
-                    width: '100%',
-                    aspectRatio: '3 / 2',
-                    borderRadius: '4px',
-                    overflow: 'hidden',
-                    boxShadow: '0 20px 50px rgba(74, 55, 40, 0.08)',
-                    backgroundColor: colors.uiElement,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '10px',
-                    transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
-                  }}
-                >
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} 
-                  />
-                </div>
+                {/* 2. Added Link wrapper to the image as well for better UX */}
+                <Link href={`/mywork/${project.slug}`}>
+                  <div 
+                    className="image-shadow-wrapper"
+                    style={{
+                      width: '100%',
+                      aspectRatio: '3 / 2',
+                      borderRadius: '4px',
+                      overflow: 'hidden',
+                      boxShadow: '0 20px 50px rgba(74, 55, 40, 0.08)',
+                      backgroundColor: colors.uiElement,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '10px',
+                      cursor: 'pointer',
+                      transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+                    }}
+                  >
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} 
+                    />
+                  </div>
+                </Link>
               </div>
 
               <div style={{ width: '25%', minWidth: '280px', textAlign: index % 2 === 0 ? 'left' : 'right' }}>
-                <span style={{ fontSize: 'clamp(11px, 1vw, 13px)', letterSpacing: '2px', textTransform: 'uppercase', color: colors.secondary }}>
+                <span style={{ fontSize: 'clamp(14px, 1vw, 16px)', letterSpacing: '2px', textTransform: 'uppercase', color: colors.secondary }}>
                   {project.category}
                 </span>
                 <h3 style={{ fontSize: 'clamp(32px, 4vw, 30px)', fontWeight: '500', textTransform: 'uppercase', color: colors.primary, margin: '15px 0 25px 0', lineHeight: '1', letterSpacing: '-1px' }}>
                   {project.title}
                 </h3>
-                <Link href={`/work/${project.id}`} style={{ textDecoration: 'none', color: colors.accent, fontSize: 'clamp(12px, 1vw, 14px)', textTransform: 'uppercase', letterSpacing: '3px', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '12px', justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end' }}>
+                
+                {/* 3. Updated Explore Link to point to your new dynamic pages */}
+                <Link 
+                  href={`/mywork/${project.slug}`} 
+                  style={{ 
+                    textDecoration: 'none', 
+                    color: colors.accent, 
+                    fontSize: 'clamp(14px, 1vw, 16px)', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '3px', 
+                    fontWeight: '700', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '12px', 
+                    justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end' 
+                  }}
+                >
                   Explore <ArrowRight size={18} />
                 </Link>
               </div>
@@ -111,27 +127,15 @@ export default function MyWork() {
           ))}
         </div>
 
-       <footer style={{ margin: '100px 0 60px 0', textAlign: 'center' }}>
-  {/* Changed textAlign to center */}
-  <div className="contact-section" style={{ textAlign: 'center' }}>
-    <h3 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '13px', marginBottom: '15px', opacity: 0.8 }}>
-      {/* Title text here if needed */}
-    </h3>
-    
-    {/* Changed justifyContent to center */}
-    <div className="contact-dots" style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-      <a href="https://instagram.com" target="_blank" className="dot-btn" aria-label="Instagram">
-        <Instagram size={18} />
-      </a>
-      <a href="tel:+1234567890" className="dot-btn" aria-label="Phone">
-        <PhoneCall size={18} />
-      </a>
-      <a href="mailto:hello@abigaildurham.com" className="dot-btn" aria-label="Email">
-        <Mail size={18} />
-      </a>
-    </div>
-  </div>
-</footer>
+        <footer style={{ margin: '100px 0 60px 0', textAlign: 'center' }}>
+          <div className="contact-section" style={{ textAlign: 'center' }}>
+            <div className="contact-dots" style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+              <a href="#" className="dot-btn"><Instagram size={18} /></a>
+              <a href="#" className="dot-btn"><PhoneCall size={18} /></a>
+              <a href="#" className="dot-btn"><Mail size={18} /></a>
+            </div>
+          </div>
+        </footer>
       </section>
 
       <style jsx>{`
@@ -149,6 +153,7 @@ export default function MyWork() {
         .nav-link:hover {
           color: ${colors.primary} !important;
         }
+          
       `}</style>
     </main>
   );

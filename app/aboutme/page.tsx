@@ -108,7 +108,7 @@ export default function AboutMe() {
             gap: '8px', 
             textDecoration: 'none', 
             color: 'var(--text-main)',
-            fontSize: '12px',
+            fontSize: '16px',
             textTransform: 'uppercase',
             letterSpacing: '1px',
             marginTop: '40px',
@@ -120,9 +120,6 @@ export default function AboutMe() {
         </div>
       </section>
 
-      <footer className="footer-section" style={{ marginTop: 'auto' }}>
-        <p style={{ fontSize: '12px', opacity: 0.6 }}>© 2026 Abigail Durham</p>
-      </footer>
     </main>
   );
 }
