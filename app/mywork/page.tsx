@@ -11,18 +11,16 @@ const projects = [
   { id: 4, title: "Systems", category: "Campaign", image: "/code.png" },
 ];
 
-// Refined Brown Palette for White Background
 const colors = {
-  primary: '#4A3728',    // Deep Earthy Brown (Text)
-  secondary: '#8B735B',  // Muted Taupe (Sub-text)
-  accent: '#A68966',     // Golden Bronze (Links)
-  uiElement: '#ffffff',  // Very Light Grey for box backgrounds
+  primary: '#4A3728',
+  secondary: '#8B735B',
+  accent: '#A68966',
+  uiElement: '#ffffff',
 };
 
 export default function MyWork() {
   return (
     <main className="home-wrapper" style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
-      {/* Navigation */}
       <nav className="top-nav" style={{ padding: '20px 5%', borderBottom: '1px solid #f0f0f0' }}>
         <div style={{ display: 'flex', gap: '30px' }}>
           <Link href="/" className="nav-link" style={{ color: colors.secondary }}>Home</Link>
@@ -32,8 +30,11 @@ export default function MyWork() {
         </div>
       </nav>
 
-      <section style={{ maxWidth: '1600px', width: '95%', margin: '0 auto', padding: '80px 0' }}>
-        <header style={{ marginBottom: '100px', textAlign: 'left', paddingLeft: '5%' }}>
+      {/* 1. REDUCED SECTION PADDING (from 80px to 40px) */}
+      <section style={{ maxWidth: '1600px', width: '95%', margin: '0 auto', padding: '40px 0' }}>
+        
+        {/* 2. REDUCED HEADER MARGIN (from 100px to 40px) */}
+        <header style={{ marginBottom: '40px', textAlign: 'center' }}>
           <span style={{ 
             fontSize: 'clamp(12px, 1.2vw, 12px)', 
             letterSpacing: '4px', 
@@ -43,100 +44,66 @@ export default function MyWork() {
             Portfolio
           </span>
           <h1 style={{ 
-            fontSize: 'clamp(50px, 10vw, 60px)', 
+            fontSize: 'clamp(40px, 10vw, 40px)',  
             fontWeight: '400',
             textTransform: 'uppercase', 
-            letterSpacing: '-4px', 
+            letterSpacing: '0px', 
             color: colors.primary,
             lineHeight: '0.85',
-            marginTop: '15px'
+            /* 3. REDUCED MARGIN TOP (from 15px to 5px) */
+            marginTop: '5px',
+            fontFamily: '"Playfair Display", "Times New Roman", serif'
           }}>
             Selected <br /> Works
           </h1>
         </header>
 
-        {/* Gallery Layout */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '120px' }}>
           {projects.map((project, index) => (
             <div 
               key={project.id} 
               style={{
                 display: 'flex',
-                flexDirection: index % 2 === 0 ? 'row' : 'row-reverse', 
+                flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexWrap: 'wrap',
                 gap: '80px'
               }}
             >
-              {/* Image Container */}
               <div style={{ width: '50%', minWidth: '350px', position: 'relative' }}>
                 <div 
                   className="image-shadow-wrapper"
                   style={{
                     width: '100%',
                     aspectRatio: '3 / 2',
-                    borderRadius: '4px', 
+                    borderRadius: '4px',
                     overflow: 'hidden',
-                    boxShadow: '0 20px 50px rgba(74, 55, 40, 0.08)', // Tinted shadow
-                    backgroundColor: colors.uiElement, 
+                    boxShadow: '0 20px 50px rgba(74, 55, 40, 0.08)',
+                    backgroundColor: colors.uiElement,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '40px',
+                    padding: '10px',
                     transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
                   }}
                 >
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    style={{ 
-                      maxWidth: '100%', 
-                      maxHeight: '100%', 
-                      objectFit: 'contain',
-                      display: 'block'
-                    }} 
+                    style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} 
                   />
                 </div>
               </div>
 
-              {/* Text Information */}
-              <div style={{ 
-                width: '25%', 
-                minWidth: '280px',
-                textAlign: index % 2 === 0 ? 'left' : 'right' 
-              }}>
-                <span style={{ 
-                  fontSize: 'clamp(11px, 1vw, 13px)', 
-                  letterSpacing: '2px', 
-                  textTransform: 'uppercase', 
-                  color: colors.secondary 
-                }}>
+              <div style={{ width: '25%', minWidth: '280px', textAlign: index % 2 === 0 ? 'left' : 'right' }}>
+                <span style={{ fontSize: 'clamp(11px, 1vw, 13px)', letterSpacing: '2px', textTransform: 'uppercase', color: colors.secondary }}>
                   {project.category}
                 </span>
-                <h3 style={{ 
-                  fontSize: 'clamp(32px, 4vw, 54px)', 
-                  fontWeight: '500', 
-                  textTransform: 'uppercase', 
-                  color: colors.primary,
-                  margin: '15px 0 25px 0',
-                  lineHeight: '1',
-                  letterSpacing: '-1px'
-                }}>
+                <h3 style={{ fontSize: 'clamp(32px, 4vw, 30px)', fontWeight: '500', textTransform: 'uppercase', color: colors.primary, margin: '15px 0 25px 0', lineHeight: '1', letterSpacing: '-1px' }}>
                   {project.title}
                 </h3>
-                <Link href={`/work/${project.id}`} style={{
-                  textDecoration: 'none',
-                  color: colors.accent,
-                  fontSize: 'clamp(12px, 1vw, 14px)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '3px',
-                  fontWeight: '700',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end'
-                }}>
+                <Link href={`/work/${project.id}`} style={{ textDecoration: 'none', color: colors.accent, fontSize: 'clamp(12px, 1vw, 14px)', textTransform: 'uppercase', letterSpacing: '3px', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '12px', justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end' }}>
                   Explore <ArrowRight size={18} />
                 </Link>
               </div>
@@ -144,22 +111,15 @@ export default function MyWork() {
           ))}
         </div>
 
-        {/* Footer */}
-        <footer style={{ margin: '150px 0 60px 0', textAlign: 'center' }}>
-            <div style={{ marginBottom: '40px', display: 'flex', justifyContent: 'center', gap: '30px' }}>
-              <Link href="#" style={{ color: colors.primary }}><Instagram size={22} /></Link>
-              <Link href="#" style={{ color: colors.primary }}><PhoneCall size={22} /></Link>
-              <Link href="#" style={{ color: colors.primary }}><Mail size={22} /></Link>
-            </div>
-            <p style={{ 
-              fontSize: '10px', 
-              letterSpacing: '3px', 
-              textTransform: 'uppercase', 
-              color: colors.secondary,
-              opacity: 0.6 
-            }}>
-              Abigail Durham © 2026
-            </p>
+        <footer style={{ margin: '100px 0 60px 0', textAlign: 'center' }}>
+          <div style={{ marginBottom: '40px', display: 'flex', justifyContent: 'center', gap: '30px' }}>
+            <Link href="#" style={{ color: colors.primary }}><Instagram size={22} /></Link>
+            <Link href="#" style={{ color: colors.primary }}><PhoneCall size={22} /></Link>
+            <Link href="#" style={{ color: colors.primary }}><Mail size={22} /></Link>
+          </div>
+          <p style={{ fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: colors.secondary, opacity: 0.6 }}>
+            Abigail Durham © 2026
+          </p>
         </footer>
       </section>
 

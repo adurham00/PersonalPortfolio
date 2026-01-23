@@ -52,14 +52,17 @@ export default function AboutMe() {
           textAlign: 'left' /* Changed from center to left */
         }}>
           <h1 style={{ 
-            fontSize: 'clamp(28px, 4vw, 40px)', 
-            textTransform: 'uppercase', 
-            letterSpacing: '4px',
-            marginBottom: '24px',
-            color: 'var(--text-main)'
-          }}>
-            About Me
-          </h1>
+          fontSize: 'clamp(30px, 10vw, 40px)',  
+          textTransform: 'uppercase', 
+          letterSpacing: '0.04em',
+          marginBottom: '24px',
+          color: 'var(--text-main)',
+          fontFamily: '"Playfair Display", "Times New Roman", serif',
+          fontWeight: '400'
+        }}>
+          About Me
+        </h1>
+
           
           <div style={{ 
             lineHeight: '1.9', 
