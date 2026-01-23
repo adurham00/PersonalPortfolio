@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link'; 
 import { ChevronLeft, ChevronRight, Instagram, Mail, PhoneCall } from 'lucide-react';
 
+// 1. Added 'link' property to each item
 const items = [
-  { id: 1, title: "Abstract Architecture", image: "/searchpage2.png" },
-  { id: 2, title: "Modern Minimalism", image: "/animal.png" },
-  { id: 3, title: "Nature's Palette", image: "/sketchbook.png" },
-  { id: 4, title: "Urban Exploration", image: "/code.png" },
-  { id: 5, title: "Studio Portrait", image: "/homepage.png" },
+  { id: 1, title: "Search Page", image: "/searchpage2.png", link: "/projects/search-page" },
+  { id: 2, title: "Home Page Widgets", image: "/widgets.png", link: "/projects/widgets" },
+  { id: 3, title: "Citation Generator", image: "/citation.png", link: "/projects/citation" },
+  { id: 4, title: "Library Holdings", image: "/Holdings.png", link: "/projects/holdings" },
 ];
 
 const colors = {
@@ -35,6 +35,13 @@ export default function PortfolioPage() {
     <main className="home-wrapper">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
+        
+        /* Added a small hover effect for the images */
+        .image-link:hover {
+          opacity: 0.9;
+          transform: scale(1.02);
+          transition: all 0.3s ease;
+        }
       `}</style>
 
       {/* Navigation */}
@@ -50,8 +57,8 @@ export default function PortfolioPage() {
         className="header-section" 
         style={{ 
           textAlign: 'center', 
-          marginTop: '-10px',   // Pushes the entire section down from the Nav
-          paddingTop: '-50px',  // Adds internal space at the top of the header
+          marginTop: '-10px',
+          paddingTop: '-50px',
           paddingBottom: '0px' 
         }}
       >
@@ -85,31 +92,36 @@ export default function PortfolioPage() {
             const item = items[slot.index];
             return (
               <div key={item.id} className={`box-wrapper ${slot.position}`}>
-                <div className="image-box" style={{ 
-                  aspectRatio: '1 / 1', 
-                  overflow: 'hidden', 
-                  backgroundColor: '#ffffff', 
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative',
-                  padding: '10px' 
-                }}>
-                  {item.image ? (
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'contain', 
-                        display: 'block' 
-                      }}
-                    />
-                  ) : (
-                    <span className="placeholder-q" style={{ opacity: 0.2 }}>?</span>
-                  )}
-                </div>
+                {/* 2. Wrapped the image-box in a Link component */}
+                <Link href={item.link} className="image-link" style={{ textDecoration: 'none', display: 'block' }}>
+                  <div className="image-box" style={{ 
+                    aspectRatio: '1 / 1', 
+                    overflow: 'hidden', 
+                    backgroundColor: '#ffffff', 
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative',
+                    padding: '10px',
+                    cursor: 'pointer' // Shows users it is clickable
+                  }}>
+                    {item.image ? (
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        style={{ 
+                          width: '100%', 
+                          height: '100%', 
+                          objectFit: 'contain', 
+                          display: 'block' 
+                        }}
+                      />
+                    ) : (
+                      <span className="placeholder-q" style={{ opacity: 0.2 }}>?</span>
+                    )}
+                  </div>
+                </Link>
+                
                 <p className="box-label" style={{ color: colors.secondary, marginTop: '10px' }}>
                   {item.title}
                 </p>
