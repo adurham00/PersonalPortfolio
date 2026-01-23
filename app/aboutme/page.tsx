@@ -2,41 +2,68 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Mail, PhoneCall, ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
+const colors = {
+  primary: '#4A3728',
+  secondary: '#8B735B',
+};
 
 export default function AboutMe() {
   return (
-    <main className="home-wrapper">
-      {/* Navigation */}
-      <nav className="top-nav">
+    <main className="home-wrapper" style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
+      <style jsx global>{`
+        .nav-link {
+          text-decoration: none;
+          font-size: 13px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: ${colors.secondary};
+          transition: 0.3s ease;
+        }
+        .nav-link:hover {
+          color: ${colors.primary};
+        }
+        .nav-link.active {
+          color: ${colors.primary};
+          font-weight: 600;
+        }
+      `}</style>
+
+      {/* CLEAN NAVIGATION ONLY */}
+      <nav className="top-nav" style={{ 
+        padding: '20px 5%', 
+        display: 'flex', 
+        gap: '30px', 
+        borderBottom: '1px solid #f0f0f0',
+        marginBottom: '60px' // Added space since the header is gone
+      }}>
         <Link href="/" className="nav-link">Home</Link>
         <Link href="/aboutme" className="nav-link active">About Me</Link>
-        <Link href="/mywork" className="nav-link">My Work</Link>
+        <Link href="/mywork" className="nav-link">Work</Link>
         <Link href="/resume" className="nav-link">Resume</Link>
       </nav>
 
+      {/* ABOUT CONTENT */}
       <section className="about-content" style={{ 
         maxWidth: '1100px', 
         width: '90%', 
-        margin: '20px auto',
+        margin: '0 auto',
         display: 'flex',
-        /* Flex-wrap ensures it stacks on small screens */
         flexWrap: 'wrap', 
-        flexDirection: 'row', 
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '60px'
+        gap: '60px',
+        paddingBottom: '80px'
       }}>
         
-        {/* LEFT SIDE: Arched Profile Image */}
+        {/* Profile Image */}
         <div className="profile-arch" style={{
           width: 'clamp(280px, 35vw, 400px)',
-          height: 'clamp(400px, 50vw, 550px)',
-          backgroundColor: 'var(--accent-gray)',
-          borderRadius: '3px 3px 3px 3px',
+          aspectRatio: '3 / 4',
+          borderRadius: '4px',
           overflow: 'hidden',
-          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.1)',
+          boxShadow: '0 20px 50px rgba(74, 55, 40, 0.08)',
           flexShrink: 0
         }}>
           <img 
@@ -46,80 +73,47 @@ export default function AboutMe() {
           />
         </div>
 
-        {/* RIGHT SIDE: Text Content */}
-        <div className="about-text-section" style={{ 
-          flex: '1',
-          minWidth: '300px',
-          textAlign: 'left' /* Changed from center to left */
-        }}>
+        {/* Text Section */}
+        <div className="about-text-section" style={{ flex: '1', minWidth: '300px' }}>
           <h1 style={{ 
-          fontSize: 'clamp(30px, 10vw, 40px)',  
-          textTransform: 'uppercase', 
-          letterSpacing: '0.04em',
-          marginBottom: '24px',
-          fontWeight: '400',
-          color: '#4A3728',
-        }}>
-          About Me
-        </h1>
-
-          
-          <div style={{ 
-            lineHeight: '1.9', 
-            fontSize: '17px', 
-            marginBottom: '30px'
+            fontSize: 'clamp(30px, 5vw, 40px)',  
+            textTransform: 'uppercase', 
+            letterSpacing: '0.04em',
+            marginBottom: '24px',
+            fontWeight: '400',
+            color: colors.primary,
           }}>
+            About Me
+          </h1>
+
+          <div style={{ lineHeight: '1.9', fontSize: '17px', color: '#555' }}>
             <p>
-              Hi, I'm Abigail. I am a creative professional based in [Your City], 
-              specializing in [Your Specialty, e.g., Architectural Photography and Minimalism]. 
-              My work is driven by a passion for clean lines, natural light, and the 
-              stories told through silent spaces.
+              Hi, I'm Abigail. I am a UI/UX designer and creative professional driven by a passion for clean lines, 
+              intuitive systems, and user-centric storytelling.
             </p>
             <p style={{ marginTop: '20px' }}>
-              With a background in [Your Background], I strive to create visual 
-              experiences that are both modern and timeless. When I'm not behind 
-              the lens, you can find me exploring urban landscapes or 
-              experimenting with new digital mediums.
+              Currently, I focus on building digital experiences that bridge the gap between complex data 
+              and elegant design. My background in computer systems allows me to approach problems 
+              with both a technical lens and a creative heart.
             </p>
           </div>
 
-          {/* Contact & Socials nested on the right */}
-          <div className="contact-section" style={{ textAlign: 'left' }}>
-            <h3 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '13px', marginBottom: '15px', opacity: 0.8 }}>
-              Let's Connect
-            </h3>
-            <div className="contact-dots" style={{ justifyContent: 'flex-start' }}>
-              <a href="https://instagram.com" target="_blank" className="dot-btn" aria-label="Instagram">
-                <Instagram size={18} />
-              </a>
-              <a href="tel:+1234567890" className="dot-btn" aria-label="Phone">
-                <PhoneCall size={18} />
-              </a>
-              <a href="mailto:hello@abigaildurham.com" className="dot-btn" aria-label="Email">
-                <Mail size={18} />
-              </a>
-            </div>
-          </div>
-
-          {/* Back Link */}
           <Link href="/" style={{ 
             display: 'inline-flex', 
             alignItems: 'center', 
             gap: '8px', 
             textDecoration: 'none', 
-            color: 'var(--text-main)',
-            fontSize: '16px',
+            color: colors.secondary,
+            fontSize: '14px',
             textTransform: 'uppercase',
-            letterSpacing: '1px',
+            letterSpacing: '2px',
             marginTop: '40px',
-            borderBottom: '1px solid transparent',
-            transition: 'border 0.3s'
+            fontWeight: '600'
           }}>
             <ArrowLeft size={16} /> Back to Home
           </Link>
         </div>
       </section>
-
     </main>
   );
 }
