@@ -13,8 +13,8 @@ const projects = [
 
 const colors = {
   primary: '#4A3728',
-  secondary: '#8B735B',
-  accent: '#A68966',
+  secondary: '#78634e',
+  accent: '#967c5d',
   uiElement: '#ffffff',
 };
 
@@ -29,7 +29,7 @@ export default function MyWork() {
         {/* Page Header */}
         <header style={{ marginBottom: '80px', textAlign: 'center' }}>
           <span style={{ 
-            fontSize: '14px', 
+            fontSize: '16px', 
             letterSpacing: '4px', 
             textTransform: 'uppercase', 
             color: colors.secondary 
@@ -93,7 +93,7 @@ export default function MyWork() {
 
               {/* Text Column */}
               <div style={{ width: '300px', textAlign: index % 2 === 0 ? 'left' : 'right' }}>
-                <span style={{ fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', color: colors.secondary }}>
+                <span style={{ fontSize: '16px', letterSpacing: '2px', textTransform: 'uppercase', color: colors.secondary }}>
                   {project.category}
                 </span>
                 <h3 style={{ 
@@ -112,7 +112,7 @@ export default function MyWork() {
                   style={{ 
                     textDecoration: 'none', 
                     color: colors.accent, 
-                    fontSize: '13px', 
+                    fontSize: '14px', 
                     textTransform: 'uppercase', 
                     letterSpacing: '2px', 
                     fontWeight: '700', 

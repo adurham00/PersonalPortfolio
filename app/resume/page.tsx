@@ -48,7 +48,7 @@ export default function ResumePage() {
             Credentials
           </h1>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
-            <p style={{ opacity: 0.5, marginTop: '10px', fontSize: '14px', letterSpacing: '1px', margin: 0 }}>
+            <p style={{ opacity: 1, marginTop: '10px', fontSize: '14px', letterSpacing: '1px', margin: 0 }}>
               Seeking Internship Opportunities 
             </p>
           </div>
