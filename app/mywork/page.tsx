@@ -21,23 +21,7 @@ const colors = {
 export default function MyWork() {
   return (
     <main className="home-wrapper" style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
-      <style jsx global>{`
-        .nav-link {
-          text-decoration: none;
-          font-size: 13px;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          color: ${colors.secondary};
-          transition: 0.3s ease;
-        }
-        .nav-link:hover {
-          color: ${colors.primary};
-        }
-        .nav-link.active {
-          color: ${colors.primary};
-          font-weight: 600;
-        }
-      `}</style>
+
   
 
       <section style={{ maxWidth: '1400px', width: '90%', margin: '0 auto', padding: '40px 0' }}>

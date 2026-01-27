@@ -41,7 +41,7 @@ export default function Navbar() {
           gap: '40px', 
           paddingTop: '100px',      // This pushes the links down from the top
           paddingBottom: '30px', 
-          borderBottom: '1px solid #f0f0f0',
+          borderBottom: '1px solid #ffffff',
           maxWidth: '1200px',     // Limits how wide the border goes
           margin: '0 auto'        // Centers the whole container on the screen
         }}>

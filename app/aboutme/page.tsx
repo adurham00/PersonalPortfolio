@@ -16,41 +16,42 @@ export default function AboutMe() {
       style={{ 
         backgroundColor: '#ffffff', 
         minHeight: '100vh', 
-        paddingTop: '0px',
         display: 'flex',
         flexDirection: 'column'
       }}
     >
+      {/* Dynamic CSS to handle the responsive overlap */}
+      <style jsx>{`
+        .about-content {
+          max-width: 1100px;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 60px;
+          padding: 0 20px 80px 20px;
+          margin: -120px auto 0 auto; /* Desktop overlap */
+        }
+
+        @media (max-width: 1024px) {
+          .about-content {
+            margin: 40px auto 0 auto; /* Remove negative margin on tablets/phones */
+            gap: 30px;
+          }
+        }
+      `}</style>
       
-      {/* ABOUT CONTENT */}
-      <section 
-        className="about-content" 
-        style={{ 
-          maxWidth: '1100px', 
-          width: '100%', 
-          /* Aggressive negative margin to pull it way up */
-          margin: '-200px auto 0 auto', 
-          display: 'flex',
-          flexWrap: 'wrap', 
-          /* Changed to flex-start to keep content at the top */
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          gap: '60px',
-          paddingBottom: '80px',
-          paddingTop: '0px'
-        }}
-      >
+      <section className="about-content">
         
         {/* Profile Image */}
         <div className="profile-arch" style={{
-          width: 'clamp(280px, 35vw, 400px)',
+          width: 'clamp(280px, 85vw, 400px)', // Made it wider on mobile
           aspectRatio: '3 / 4',
           borderRadius: '4px',
           overflow: 'hidden',
           boxShadow: '0 20px 50px rgba(74, 55, 40, 0.08)',
           flexShrink: 0,
-          /* Ensures the image itself doesn't have extra top space */
-          marginTop: '0px' 
         }}>
           <img 
             src="/abby.jpg" 
@@ -60,7 +61,7 @@ export default function AboutMe() {
         </div>
 
         {/* Text Section */}
-        <div className="about-text-section" style={{ flex: '1', minWidth: '300px', paddingTop: '20px' }}>
+        <div className="about-text-section" style={{ flex: '1', minWidth: '300px', paddingTop: '10px' }}>
           <h1 style={{ 
             fontSize: 'clamp(30px, 5vw, 50px)',  
             textTransform: 'uppercase', 

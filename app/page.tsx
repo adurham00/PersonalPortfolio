@@ -29,27 +29,44 @@ export default function PortfolioPage() {
   ];
 
   return (
-    /* Added a negative margin here to pull the whole page toward the Nav */
-    <main className="home-wrapper" style={{ marginTop: '-40px' }}>
+    <main className="home-wrapper">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
+        
+        .home-wrapper {
+          margin-top: -40px; /* Desktop pull-up */
+        }
+
+        .header-section {
+          text-align: center;
+          padding-bottom: 45px;
+        }
+
         .image-link:hover {
           opacity: 0.9;
           transform: scale(1.02);
           transition: all 0.3s ease;
         }
+
+        /* MOBILE FIXES */
+        @media (max-width: 768px) {
+          .home-wrapper {
+            margin-top: 20px !important; /* Push away from nav on mobile */
+          }
+          .hero-title-text {
+            margin-top: 0 !important;
+          }
+          .header-section {
+            padding-bottom: 20px;
+          }
+          .contact-dots {
+            margin-top: 20px !important;
+          }
+        }
       `}</style>
 
       {/* Hero / Logo Section */}
-      <header 
-        className="header-section" 
-        style={{ 
-          textAlign: 'center', 
-          marginTop: '-px',
-          paddingTop: '0px', // Removed the negative padding
-          paddingBottom: '45px' 
-        }}
-      >
+      <header className="header-section">
         <div className="hero-title-text" style={{ marginTop: '-20px' }}>
           <img 
             src="/AbigailDurham2.svg" 
@@ -64,7 +81,6 @@ export default function PortfolioPage() {
           />
         </div>
         
-        {/* Tightened this margin from 20px to 5px */}
         <div className="contact-dots" style={{ marginTop: '40px' }}>
           <a href="#" className="dot-btn"><Instagram size={18} /></a>
           <a href="#" className="dot-btn"><PhoneCall size={18} /></a>
@@ -72,7 +88,7 @@ export default function PortfolioPage() {
         </div>
       </header>
 
-      {/* Carousel Section - Pulling this up closer to the header */}
+      {/* Carousel Section */}
       <section className="carousel-container" style={{ marginTop: '-10px' }}>
         <div className="grey-backdrop-bar" />
         <div className="carousel-stage">
@@ -117,7 +133,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <div className="footer-section" style={{ marginTop: '-20px' }}>
+      <div className="footer-section" style={{ marginTop: '20px' }}>
         <Link href="/mywork" className="view-more-btn">
           <span style={{ color: colors.primary, fontWeight: '600' }}>View More</span>
         </Link>
