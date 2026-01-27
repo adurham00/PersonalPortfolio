@@ -45,9 +45,9 @@ export default function PortfolioPage() {
         className="header-section" 
         style={{ 
           textAlign: 'center', 
-          marginTop: '-60px',
+          marginTop: '-px',
           paddingTop: '0px', // Removed the negative padding
-          paddingBottom: '0px' 
+          paddingBottom: '45px' 
         }}
       >
         <div className="hero-title-text" style={{ marginTop: '-20px' }}>
@@ -55,7 +55,7 @@ export default function PortfolioPage() {
             src="/AbigailDurham2.svg" 
             alt="Abigail Durham" 
             style={{ 
-              maxWidth: '600px', 
+              maxWidth: '650px', 
               width: '90%', 
               height: 'auto',
               display: 'block',
@@ -65,7 +65,7 @@ export default function PortfolioPage() {
         </div>
         
         {/* Tightened this margin from 20px to 5px */}
-        <div className="contact-dots" style={{ marginTop: '30px' }}>
+        <div className="contact-dots" style={{ marginTop: '40px' }}>
           <a href="#" className="dot-btn"><Instagram size={18} /></a>
           <a href="#" className="dot-btn"><PhoneCall size={18} /></a>
           <a href="#" className="dot-btn"><Mail size={18} /></a>
