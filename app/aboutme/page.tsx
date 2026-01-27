@@ -75,13 +75,10 @@ export default function AboutMe() {
 
           <div style={{ lineHeight: '1.9', fontSize: '17px', color: '#555' }}>
             <p>
-              Hi, I'm Abigail. I am a UI/UX designer and creative professional driven by a passion for clean lines, 
-              intuitive systems, and user-centric storytelling.
+              Hi, I'm Abigail. As a UI/UX designer, I'm driven by a passion for connecting people through technology. I focus on bringing comfort and clarity to web interfaces, making the digital world feel a little more human.
             </p>
             <p style={{ marginTop: '20px' }}>
-              Currently, I focus on building digital experiences that bridge the gap between complex data 
-              and elegant design. My background in computer systems allows me to approach problems 
-              with both a technical lens and a creative heart.
+           I believe that technology should be a tool for strengthening others and fostering genuine human connection. Having navigated my own shift from technical systems to creative design, I understand the power of evolving and embracing new paths. I approach every project with a commitment to continuous growth and a heart for helping others thrive in an ever-changing digital world.
             </p>
           </div>
 

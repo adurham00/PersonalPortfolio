@@ -2,11 +2,37 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Download, ArrowLeft, Mail } from 'lucide-react';
+import { Download, ArrowLeft } from 'lucide-react';
 
 export default function ResumePage() {
   return (
     <main className="resume-wrapper" style={{ backgroundColor: '#fff', minHeight: '100vh' }}>
+      <style jsx>{`
+        .download-btn {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 11px;
+          text-decoration: none;
+          color: #000;
+          border: 1px solid #000;
+          padding: 8px 15px;
+          border-radius: 20px;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .download-btn:hover {
+          background-color: #4A3728; /* Using your primary brand color */
+          color: #fff;
+          border-color: #4A3728;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(74, 55, 40, 0.2);
+        }
+
+        .download-btn:active {
+          transform: translateY(0);
+        }
+      `}</style>
 
       <section style={{ maxWidth: '900px', width: '90%', margin: '0 auto', padding: '80px 0' }}>
         <header style={{ marginBottom: '60px' }}>
@@ -28,7 +54,6 @@ export default function ResumePage() {
           </div>
         </header>
 
-        {/* Resume PDF Viewer Container */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h2 style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: '600', margin: 0 }}>
@@ -37,24 +62,12 @@ export default function ResumePage() {
             <a 
               href="/DurhamAbigailResume.pdf" 
               download 
-              style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                fontSize: '11px', 
-                textDecoration: 'none', 
-                color: '#000',
-                border: '1px solid #000',
-                padding: '8px 15px',
-                borderRadius: '20px',
-                transition: 'all 0.2s ease'
-              }}
+              className="download-btn"
             >
               Download PDF <Download size={14} />
             </a>
           </div>
           
-          {/* PDF Preview */}
           <div style={{ 
             width: '100%', 
             height: '800px', 
@@ -72,7 +85,6 @@ export default function ResumePage() {
           </div>
         </div>
 
-        {/* Bottom Back Link */}
         <div style={{ marginTop: '100px', borderTop: '1px solid #eee', paddingTop: '40px' }}>
           <Link href="/mywork" style={{ 
             display: 'inline-flex', 
