@@ -38,20 +38,7 @@ export default function MyWork() {
           font-weight: 600;
         }
       `}</style>
-
-      {/* MATCHING CLEAN NAVIGATION */}
-      <nav className="top-nav" style={{ 
-        padding: '20px 5%', 
-        display: 'flex', 
-        gap: '30px', 
-        borderBottom: '1px solid #f0f0f0',
-        marginBottom: '40px' 
-      }}>
-        <Link href="/" className="nav-link">Home</Link>
-        <Link href="/aboutme" className="nav-link">About Me</Link>
-        <Link href="/mywork" className="nav-link active">Work</Link>
-        <Link href="/resume" className="nav-link">Resume</Link>
-      </nav>
+  
 
       <section style={{ maxWidth: '1400px', width: '90%', margin: '0 auto', padding: '40px 0' }}>
         

@@ -11,51 +11,35 @@ const colors = {
 
 export default function AboutMe() {
   return (
-    <main className="home-wrapper" style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
-      <style jsx global>{`
-        .nav-link {
-          text-decoration: none;
-          font-size: 13px;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          color: ${colors.secondary};
-          transition: 0.3s ease;
-        }
-        .nav-link:hover {
-          color: ${colors.primary};
-        }
-        .nav-link.active {
-          color: ${colors.primary};
-          font-weight: 600;
-        }
-      `}</style>
-
-      {/* CLEAN NAVIGATION ONLY */}
-      <nav className="top-nav" style={{ 
-        padding: '20px 5%', 
-        display: 'flex', 
-        gap: '30px', 
-        borderBottom: '1px solid #f0f0f0',
-        marginBottom: '60px' // Added space since the header is gone
-      }}>
-        <Link href="/" className="nav-link">Home</Link>
-        <Link href="/aboutme" className="nav-link active">About Me</Link>
-        <Link href="/mywork" className="nav-link">Work</Link>
-        <Link href="/resume" className="nav-link">Resume</Link>
-      </nav>
-
-      {/* ABOUT CONTENT */}
-      <section className="about-content" style={{ 
-        maxWidth: '1100px', 
-        width: '90%', 
-        margin: '0 auto',
+    <main 
+      className="home-wrapper" 
+      style={{ 
+        backgroundColor: '#ffffff', 
+        minHeight: '100vh', 
+        paddingTop: '0px',
         display: 'flex',
-        flexWrap: 'wrap', 
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '60px',
-        paddingBottom: '80px'
-      }}>
+        flexDirection: 'column'
+      }}
+    >
+      
+      {/* ABOUT CONTENT */}
+      <section 
+        className="about-content" 
+        style={{ 
+          maxWidth: '1100px', 
+          width: '100%', 
+          /* Aggressive negative margin to pull it way up */
+          margin: '-200px auto 0 auto', 
+          display: 'flex',
+          flexWrap: 'wrap', 
+          /* Changed to flex-start to keep content at the top */
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          gap: '60px',
+          paddingBottom: '80px',
+          paddingTop: '0px'
+        }}
+      >
         
         {/* Profile Image */}
         <div className="profile-arch" style={{
@@ -64,7 +48,9 @@ export default function AboutMe() {
           borderRadius: '4px',
           overflow: 'hidden',
           boxShadow: '0 20px 50px rgba(74, 55, 40, 0.08)',
-          flexShrink: 0
+          flexShrink: 0,
+          /* Ensures the image itself doesn't have extra top space */
+          marginTop: '0px' 
         }}>
           <img 
             src="/abby.jpg" 
@@ -74,9 +60,9 @@ export default function AboutMe() {
         </div>
 
         {/* Text Section */}
-        <div className="about-text-section" style={{ flex: '1', minWidth: '300px' }}>
+        <div className="about-text-section" style={{ flex: '1', minWidth: '300px', paddingTop: '20px' }}>
           <h1 style={{ 
-            fontSize: 'clamp(30px, 5vw, 40px)',  
+            fontSize: 'clamp(30px, 5vw, 50px)',  
             textTransform: 'uppercase', 
             letterSpacing: '0.04em',
             marginBottom: '24px',

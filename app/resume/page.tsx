@@ -7,13 +7,6 @@ import { Download, ArrowLeft, Mail } from 'lucide-react';
 export default function ResumePage() {
   return (
     <main className="resume-wrapper" style={{ backgroundColor: '#fff', minHeight: '100vh' }}>
-      {/* Navigation */}
-      <nav className="top-nav" style={{ padding: '20px 5%', display: 'flex', gap: '30px', borderBottom: '1px solid #f0f0f0' }}>
-        <Link href="/" style={{ textDecoration: 'none', color: '#666', fontSize: '14px' }}>Home</Link>
-        <Link href="/aboutme" style={{ textDecoration: 'none', color: '#666', fontSize: '14px' }}>About Me</Link>
-        <Link href="/mywork" style={{ textDecoration: 'none', color: '#666', fontSize: '14px' }}>My Work</Link>
-        <Link href="/resume" style={{ textDecoration: 'none', color: '#000', fontSize: '14px', fontWeight: '600' }}>Resume</Link>
-      </nav>
 
       <section style={{ maxWidth: '900px', width: '90%', margin: '0 auto', padding: '80px 0' }}>
         <header style={{ marginBottom: '60px' }}>
@@ -39,10 +32,10 @@ export default function ResumePage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h2 style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: '600', margin: 0 }}>
-              Curriculum Vitae
+              Download My Resume
             </h2>
             <a 
-              href="/your-resume.pdf" 
+              href="/DurhamAbigailResume.pdf" 
               download 
               style={{ 
                 display: 'flex', 
@@ -71,7 +64,7 @@ export default function ResumePage() {
             boxShadow: '0 10px 30px rgba(0,0,0,0.05)' 
           }}>
             <iframe 
-              src="/your-resume.pdf#toolbar=0" 
+              src="/DurhamAbigailResume.pdf#toolbar=0" 
               width="100%" 
               height="100%" 
               style={{ border: 'none' }}
