@@ -201,8 +201,8 @@ body, html {
 /* --- ARROW BUTTONS --- */
 .controls-overlay {
   position: absolute;
-  width: 94%;
-  max-width: 875px; 
+  width: 100%;
+  max-width: 1150px; 
   display: flex;
   justify-content: space-between;
   top: 50%;
