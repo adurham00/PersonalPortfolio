@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   
   // This points to your icon (the "favicon")
   icons: {
-    icon: "/D.png", // Standard tab icon
-    apple: "/D.png", // Icon for when someone saves your site to an iPhone home screen
+    icon: "/D-2.png", // Standard tab icon
+    apple: "/D-2.png", // Icon for when someone saves your site to an iPhone home screen
   },
 };
 
