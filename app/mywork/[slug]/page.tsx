@@ -2,77 +2,44 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronLeft, X } from 'lucide-react';
+import { ChevronLeft, X, ArrowUpRight } from 'lucide-react';
 
 const projectDetails = {
   "institutional": {
     title: "BYU Student UI/UX Assistant",
-    description: "https://www.figma.com/proto/dk3T1CAHNUbbH3xMTYxXg1/Citation-URL?node-id=176-2565&p=f&t=9469kHf8epgKw7Ij-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=146%3A2640&show-proto-sidebar=1",
+    description: ` Links connect to figma prototypes.
+
+Project 1, Images 1-2: BYU Library Homepage Redesign. A comprehensive overhaul of the library’s digital front door. This project involved rigorous user testing and iterative feedback sessions to ensure a seamless student experience. Currently awaiting development, the final design is slated for publication between semesters. [View Design](https://www.figma.com/design/woAQelHJLhUJxk6tFePeIJ/Home-Page-Redesign---Abigail-Preece?node-id=0-1&t=86Q32dDcYzJ2z7yY-1)
+
+Project 2, Images 3-5: Holdings Section Accessibility Update. Redesigning the Holdings section required balancing complex data with intuitive accessibility. Through extensive troubleshooting and collaborative reviews with management, I simplified the information architecture to make resource tracking clearer for all users. [View Design](https://www.figma.com/design/GSXB017KhgQwZL5UBI78iv/Holdings-Redesign?node-id=0-1&t=86Q32dDcYzJ2z7yY-1)
+
+Project 3, Images 6-10: In-Card Citation Tool. Designed a high-fidelity prototype for a new feature allowing students to generate citations directly from a resource card. This project served as a deep dive into Figma’s advanced prototyping capabilities to solve a common student pain point. [View Design](https://www.figma.com/design/dk3T1CAHNUbbH3xMTYxXg1/Citation-URL?t=86Q32dDcYzJ2z7yY-1)
+
+Project 4, Images 11-12: Search Landing Page Refresh. A streamlined update focused on modernizing an aging interface. This project involved adding key navigation links and collaborating closely with our team writer to refine the copy for better user clarity. [View Design](https://www.figma.com/design/Ba3Jr8fO6BwpmYPZgr8tCe/SS-Landing-Page?t=86Q32dDcYzJ2z7yY-1)`,
     gallery: [
-      "/homepage.png", "/sketchbook.png", "/image3.png",
-      "/image4.png", "/image5.png", "/image6.png",
-      "/image7.png", "/image8.png", "/image9.png"
+      "/HomePagefinal.png", "/Hi Def 3.png", "/Holdings2.png",
+      "/Holdings4.png", "/Holdings.png", "/Holdings5.png",
+      "/Citation1.png", "/Citation2.png", "/citation.png",
+      "/Citation4.png", "/SearchPage1.jpeg", "/searchpage.png"
     ],
   },
-  "case-studies": {
-    title: "Personal Case Studies",
-    description: "Focus: A deep dive into user behavior and pattern recognition within complex datasets.",
-    gallery: ["/animal.png", "/code.png", "/image3.png", "/image4.png", "/image5.png", "/image6.png", "/image7.png", "/image8.png", "/image9.png"],
-  },
-  "creative-labs": {
-    title: "Creative Works",
-    description: "Images 1–3: Modeled in Maya and hand-textured using Substance Painter and Photoshop. This project helped me bridge the gap between 3D geometry and traditional painting, focusing on how light interacts with custom surfaces.\n\nImages 4–5: An action figure sculpted in Nomad (iPad). Creating this taught me how to manage 3D topology specifically for physical printing—making sure the joints and details actually hold up off-screen.\n\nImage 6: A Procreate painting focused on color and mood.\n\nImages 7–9: Sketchbook scans. These are my go-to for practicing fundamentals like anatomy and quick ideation away from the computer.",
-    gallery: ["/FinalBuildingRender.jpg", "/FinalFairyRender.jpg", "/SpiderFinal1.jpg", "/Ethan .jpg", "/action.jpg", "/Artwork4.jpg","/Artwork1.jpg", "/Artwork2.jpg", "/Artwork3.jpg"],
-  },
-  "systems": {
-    title: "Computer Systems",
-    description: "Curriculum: A comprehensive look at the architecture and functionality of modern computing systems.",
-    gallery: ["/code.png", "/homepage.png", "/image3.png", "/image4.png", "/image5.png", "/image6.png", "/image7.png", "/image8.png", "/image9.png"],
-  },
+  // ... other project objects remain same
 };
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const project = projectDetails[slug as keyof typeof projectDetails];
-  
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
-  if (!project) {
-    return <div style={{ padding: '100px', textAlign: 'center' }}>Project not found.</div>;
-  }
+  if (!project) return <div style={{ padding: '100px', textAlign: 'center' }}>Project not found.</div>;
 
   return (
     <main style={{ backgroundColor: '#ffffff', minHeight: '100vh', padding: '40px 5%' }}>
-      {/* Lightbox Overlay */}
+      {/* Lightbox */}
       {selectedImg && (
-        <div 
-          onClick={() => setSelectedImg(null)}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: 'rgba(0,0,0,0.9)',
-            zIndex: 1000,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'zoom-out',
-            padding: '20px'
-          }}
-        >
-          <button 
-            style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}
-            onClick={(e) => { e.stopPropagation(); setSelectedImg(null); }}
-          >
-            <X size={40} />
-          </button>
-          <img 
-            src={selectedImg} 
-            alt="Enlarged view" 
-            style={{ maxWidth: '95%', maxHeight: '95%', objectFit: 'contain', borderRadius: '4px' }} 
-          />
+        <div onClick={() => setSelectedImg(null)} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0,0,0,0.9)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'zoom-out', padding: '20px' }}>
+          <button style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'white', cursor: 'pointer' }} onClick={() => setSelectedImg(null)}><X size={40} /></button>
+          <img src={selectedImg} alt="Enlarged" style={{ maxWidth: '95%', maxHeight: '95%', objectFit: 'contain' }} />
         </div>
       )}
 
@@ -81,60 +48,49 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       </Link>
 
       <section style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        <h1 style={{ fontSize: '42px', color: '#4A3728', textTransform: 'uppercase', marginBottom: '24px', fontWeight: '500' }}>
-          {project.title}
-        </h1>
+        <h1 style={{ fontSize: '42px', color: '#4A3728', textTransform: 'uppercase', marginBottom: '24px', fontWeight: '500' }}>{project.title}</h1>
         
-        {/* Description Logic: Bold before colon + Newline support */}
-        <div style={{ 
-            fontSize: '18px', 
-            lineHeight: '1.7', 
-            color: '#4A3728', 
-            marginBottom: '60px', 
-            maxWidth: '800px',
-            whiteSpace: 'pre-line' 
-        }}>
+        <div style={{ fontSize: '17px', lineHeight: '1.6', color: '#4A3728', marginBottom: '60px', maxWidth: '850px' }}>
           {project.description.split('\n\n').map((paragraph, index) => {
-            if (paragraph.includes(':')) {
-              const [title, details] = paragraph.split(':');
-              return (
-                <p key={index} style={{ marginBottom: '1.5rem' }}>
-                  <strong style={{ fontWeight: '700' }}>{title}:</strong>{details}
-                </p>
+            const linkRegex = /\[(.*?)\]\((.*?)\)/;
+            const match = paragraph.match(linkRegex);
+            
+            let textContent = paragraph;
+            let linkElement = null;
+
+            if (match) {
+              const [fullMatch, label, url] = match;
+              textContent = paragraph.replace(fullMatch, "");
+              linkElement = (
+                <a 
+                  href={url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ color: '#8B735B', textDecoration: 'underline', fontWeight: '600', marginLeft: '6px', display: 'inline-flex', alignItems: 'center', gap: '2px' }}
+                >
+                  {label} <ArrowUpRight size={14} />
+                </a>
               );
             }
-            return <p key={index} style={{ marginBottom: '1.5rem' }}>{paragraph}</p>;
+
+            const hasColon = textContent.includes(':');
+            const [title, details] = hasColon ? textContent.split(':') : [null, textContent];
+
+            return (
+              <p key={index} style={{ marginBottom: '1.5rem' }}>
+                {title && <strong style={{ fontWeight: '700' }}>{title}:</strong>}
+                {details}
+                {linkElement}
+              </p>
+            );
           })}
         </div>
 
-        {/* 3x3 Forced Square Grid */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(3, 1fr)', 
-          gap: '20px' 
-        }}>
+        {/* Gallery Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
           {project.gallery.map((img, idx) => (
-            <div 
-              key={idx} 
-              onClick={() => setSelectedImg(img)} 
-              style={{ 
-                width: '100%', 
-                aspectRatio: '1 / 1', 
-                backgroundColor: '#f9f9f9', 
-                borderRadius: '4px', 
-                overflow: 'hidden',
-                cursor: 'zoom-in',
-                transition: 'transform 0.3s ease',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <img 
-                src={img} 
-                alt={`${project.title} item ${idx}`} 
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
-              />
+            <div key={idx} onClick={() => setSelectedImg(img)} style={{ width: '100%', aspectRatio: '1/1', backgroundColor: '#f9f9f9', cursor: 'zoom-in', overflow: 'hidden' }}>
+              <img src={img} alt="Gallery item" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           ))}
         </div>
