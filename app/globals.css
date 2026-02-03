@@ -1,3 +1,4 @@
+/* 1. Variable Definitions */
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -5,16 +6,18 @@
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
+  /* Colors defined as raw R, G, B numbers for use in rgb() functions */
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: #CBBEFF;
+  --background-start-rgb: 203, 190, 255; /* Converted from #CBBEFF */
   --background-end-rgb: 255, 255, 255;
 
   --callout-rgb: 238, 240, 241;
   --callout-border-rgb: 172, 175, 176;
-  --card-rgb: #6649AE;
+  --card-rgb: 102, 73, 174; /* Converted from #6649AE */
   --card-border-rgb: 131, 134, 135;
 }
 
+/* 2. Dark Mode Overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -28,6 +31,7 @@
   }
 }
 
+/* 3. Global Resets */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -40,6 +44,7 @@ body {
   overflow-x: hidden;
 }
 
+/* 4. Base Styles */
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -48,6 +53,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-family: var(--font-mono); /* Optional: applies your mono font globally */
+  min-height: 100vh;
 }
 
 a {
@@ -55,6 +62,7 @@ a {
   text-decoration: none;
 }
 
+/* 5. Utility / Theming */
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

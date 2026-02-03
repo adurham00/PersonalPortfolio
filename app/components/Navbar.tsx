@@ -27,7 +27,7 @@ export default function Navbar() {
           justify-content: center;
           align-items: center;
           gap: 40px;
-          padding: 100px 20px 30px 20px; /* Top, Right, Bottom, Left */
+          padding: 80px 20px 25px 20px; /* Reduced from 100px */
           border-bottom: 1px solid #f0f0f0;
           max-width: 1400px;
           margin: 0 auto;
@@ -40,7 +40,7 @@ export default function Navbar() {
           letter-spacing: 2px;
           color: ${colors.secondary};
           transition: 0.3s ease;
-          white-space: nowrap; /* Prevents links from breaking into two lines */
+          white-space: nowrap;
         }
 
         .nav-link:hover { color: ${colors.primary}; }
@@ -50,22 +50,22 @@ export default function Navbar() {
           font-weight: 600;
         }
 
-        /* Responsive Mobile Styles */
+        /* MOBILE FIXES */
         @media (max-width: 768px) {
           .nav-container {
-            padding-top: 40px; /* Reduced top padding for mobile */
-            gap: 20px;         /* Tighter gap so links don't fall off screen */
-            flex-wrap: wrap;   /* Allows links to wrap if the screen is very small */
+            padding: 15px 10px; /* Much smaller top/bottom padding */
+            gap: 12px;         /* Tighter gap to keep everything on one line */
+            justify-content: space-evenly; /* Distributes links evenly across the screen */
           }
           
           .nav-link {
-            font-size: 11px;   /* Slightly smaller font for mobile */
-            letter-spacing: 1px;
+            font-size: 10px;   /* Smaller font for tight screens */
+            letter-spacing: 0.5px; /* Less spacing so words don't stretch */
           }
         }
       `}</style>
 
-      <div style={{ width: '100%', backgroundColor: '#ffffff' }}>
+      <div style={{ width: '100%', backgroundColor: '#ffffff', position: 'relative', zIndex: 100 }}>
         <nav className="nav-container">
           {navLinks.map((link) => (
             <Link 
