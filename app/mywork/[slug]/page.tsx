@@ -7,7 +7,7 @@ import { ChevronLeft, X } from 'lucide-react';
 const projectDetails = {
   "institutional": {
     title: "BYU Student UI/UX Assistant",
-    description: "Role: UI/UX Design Assistant.\n\nProject: Streamlining library resource accessibility through user-centered interface iterations.",
+    description: "https://www.figma.com/proto/dk3T1CAHNUbbH3xMTYxXg1/Citation-URL?node-id=176-2565&p=f&t=9469kHf8epgKw7Ij-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=146%3A2640&show-proto-sidebar=1",
     gallery: [
       "/homepage.png", "/sketchbook.png", "/image3.png",
       "/image4.png", "/image5.png", "/image6.png",

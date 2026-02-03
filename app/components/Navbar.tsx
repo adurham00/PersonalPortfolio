@@ -22,6 +22,17 @@ export default function Navbar() {
   return (
     <>
       <style jsx global>{`
+        .nav-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 40px;
+          padding: 100px 20px 30px 20px; /* Top, Right, Bottom, Left */
+          border-bottom: 1px solid #f0f0f0;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
         .nav-link {
           text-decoration: none;
           font-size: 13px;
@@ -29,27 +40,33 @@ export default function Navbar() {
           letter-spacing: 2px;
           color: ${colors.secondary};
           transition: 0.3s ease;
+          white-space: nowrap; /* Prevents links from breaking into two lines */
         }
+
         .nav-link:hover { color: ${colors.primary}; }
+        
         .nav-link.active {
           color: ${colors.primary} !important;
           font-weight: 600;
         }
+
+        /* Responsive Mobile Styles */
+        @media (max-width: 768px) {
+          .nav-container {
+            padding-top: 40px; /* Reduced top padding for mobile */
+            gap: 20px;         /* Tighter gap so links don't fall off screen */
+            flex-wrap: wrap;   /* Allows links to wrap if the screen is very small */
+          }
+          
+          .nav-link {
+            font-size: 11px;   /* Slightly smaller font for mobile */
+            letter-spacing: 1px;
+          }
+        }
       `}</style>
 
-      {/* This wrapper ensures the nav can actually center itself */}
       <div style={{ width: '100%', backgroundColor: '#ffffff' }}>
-        <nav style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center',
-          gap: '40px', 
-          paddingTop: '100px',   // This makes it much lower from the top
-          paddingBottom: '30px', 
-          borderBottom: '1px solid #f0f0f0',
-          maxWidth: '1400px',    // Keeps it consistent with your content
-          margin: '0 auto'       // Centers the whole nav container
-        }}>
+        <nav className="nav-container">
           {navLinks.map((link) => (
             <Link 
               key={link.href} 
