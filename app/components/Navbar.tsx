@@ -51,10 +51,10 @@ export default function Navbar() {
         }
 
         /* MOBILE FIXES */
-        @media (max-width: 768px) {
+        @media (max-width: 745px) {
           .nav-container {
             padding: 15px 10px; /* Much smaller top/bottom padding */
-            gap: 12px;         /* Tighter gap to keep everything on one line */
+            gap: 10px;         /* Tighter gap to keep everything on one line */
             justify-content: space-evenly; /* Distributes links evenly across the screen */
           }
           
