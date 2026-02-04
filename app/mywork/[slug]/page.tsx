@@ -14,7 +14,7 @@ interface Project {
 const projectDetails: Record<string, Project> = {
   "institutional": {
     title: "BYU Student UI/UX Assistant",
-    description: `Links connect to figma prototypes.
+    description: `Links connect to Figma prototypes.
 
 Project 1, Images 1-2: BYU Library Homepage Redesign. A comprehensive overhaul of the library’s digital front door. This project involved rigorous user testing and iterative feedback sessions to ensure a seamless student experience. Currently awaiting development, the final design is slated for publication between semesters. [View Design](https://www.figma.com/design/woAQelHJLhUJxk6tFePeIJ/Home-Page-Redesign---Abigail-Preece?node-id=0-1&t=86Q32dDcYzJ2z7yY-1)
 
