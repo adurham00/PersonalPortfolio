@@ -27,7 +27,7 @@ export default function Navbar() {
           justify-content: center;
           align-items: center;
           gap: 40px;
-          padding: 80px 20px 25px 20px; /* Reduced from 100px */
+          padding: 60px 20px 20px 20px; 
           border-bottom: 1px solid #f0f0f0;
           max-width: 1400px;
           margin: 0 auto;
@@ -50,17 +50,27 @@ export default function Navbar() {
           font-weight: 600;
         }
 
-        /* MOBILE FIXES */
+        /* MOBILE FIXES - Specifically targeting iPhone widths */
         @media (max-width: 700px) {
           .nav-container {
-            padding: 15px 10px; /* Much smaller top/bottom padding */
-            gap: 10px;         /* Tighter gap to keep everything on one line */
-            justify-content: space-evenly; /* Distributes links evenly across the screen */
+            padding: 15px 5px; /* Minimal side padding */
+            gap: 5px;          /* Minimal gap to prevent overflow */
+            justify-content: space-around; /* Distributes links without hitting edges */
+            width: 100%;
           }
           
           .nav-link {
-            font-size: 10px;   /* Smaller font for tight screens */
-            letter-spacing: 0.5px; /* Less spacing so words don't stretch */
+            font-size: 10px;       /* Scale down text */
+            letter-spacing: 0.5px;  /* Minimal letter spacing */
+            padding: 5px;          /* Small touch target area */
+          }
+        }
+
+        /* EXTRA TIGHT SCREENS (iPhone SE/Mini) */
+        @media (max-width: 350px) {
+          .nav-link {
+            font-size: 9px;
+            letter-spacing: 0px;
           }
         }
       `}</style>
