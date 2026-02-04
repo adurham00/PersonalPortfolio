@@ -50,13 +50,16 @@ Images 7-9: Traditional Sketchbook. These are my go-to for practicing fundamenta
   },
   "systems": {
     title: "Computer Systems",
-    description: `Curriculum: A comprehensive look at the architecture and functionality of modern computing systems. This includes a deep dive into user behavior and pattern recognition within complex datasets.`,
-    gallery: ["/chess1.png", "/chess3.png", "/chess5.png", "/image4.png", "/image5.png", "/image6.png", "/image7.png", "/image8.png", "/image9.png"],
+    description: `Project 1, Images 1-3: Advanced Chess Application. Developed a full-stack chess application as part of the CS 240 curriculum. This project focused on advanced software construction, implementing a robust server program with WebSocket support for real-time gameplay and secure authentication services. [View Repository](https://github.com/apreece1/Chess-CS240-.git)
+
+Project 2, Images 4-7: Motivational Alarm Web App. A full-stack web application built for CS 260. I designed and implemented a server-side architecture featuring MongoDB for user authentication and integrated Bootstrap plugins to enhance the user interface and habit-tracking functionality. [View Repository](https://github.com/apreece1/startup-html.git)
+
+Project 3, Image 8: Personal Portfolio Deployment. This current portfolio was built and deployed using Amazon Web Services (AWS) to showcase a professional digital presence. It leverages cloud infrastructure to ensure high availability and efficient content delivery. [View Repository](https://github.com/adurham00/PersonalPortfolio.git)`,
+    gallery: ["/chess1.png", "/chess3.png", "/chess5.png", "/getup1.png", "/getup2.png", "/getup3.png", "/cs240.jpg", "/portfolio.png"],
   },
 };
 
 export default function ProjectPage({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
-  // Handle the async params for Next.js 15 compatibility
   const resolvedParams = params instanceof Promise ? React.use(params) : params;
   const slug = resolvedParams.slug;
   
