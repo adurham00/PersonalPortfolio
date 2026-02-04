@@ -51,7 +51,7 @@ export default function Navbar() {
         }
 
         /* MOBILE FIXES */
-        @media (max-width: 745px) {
+        @media (max-width: 700px) {
           .nav-container {
             padding: 15px 10px; /* Much smaller top/bottom padding */
             gap: 10px;         /* Tighter gap to keep everything on one line */

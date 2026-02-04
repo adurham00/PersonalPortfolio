@@ -6,9 +6,10 @@ import { ArrowRight } from 'lucide-react';
 
 const projects = [
   { id: 1, title: "BYU Student UI/UX Assistant", category: "Library Website", image: "/homepage.png", slug: "institutional" },
+    { id: 4, title: "Computer Systems", category: "CS Minor coursework", image: "/code.png", slug: "systems" },
   { id: 2, title: "Personal Case Studies", category: "Wireframes and Figma", image: "/animal.png", slug: "case-studies" },
   { id: 3, title: "Creative Works", category: "Sketchbook and 3D Samples", image: "/sketchbook.png", slug: "creative-labs" },
-  { id: 4, title: "Computer Systems", category: "CS Minor coursework", image: "/code.png", slug: "systems" },
+
 ];
 
 const colors = {
