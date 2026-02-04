@@ -10,16 +10,16 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  // This is what shows in the Browser Tab and Google search results
   title: "Abigail Durham | UI/UX Designer & Portfolio",
-  description: "Explore the portfolio of Abigail Durham, featuring creative UI/UX design, research, and digital interface projects.",
-  
-  // This points to your icon (the "favicon")
+  description:
+    "Explore the portfolio of Abigail Durham, featuring creative UI/UX design, research, and digital interface projects.",
   icons: {
-    icon: "/D.png", // Standard tab icon
-    apple: "/D.png", // Icon for when someone saves your site to an iPhone home screen
+    icon: "/favicon.ico?v=4",
+    shortcut: "/favicon.ico?v=4",
+    apple: "/favicon.ico?v=4", // Only keep this if you don't have a separate apple-icon.png
   },
 };
+
 
 export default function RootLayout({
   children,
