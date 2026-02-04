@@ -51,7 +51,7 @@ Images 7-9: Traditional Sketchbook. These are my go-to for practicing fundamenta
   "systems": {
     title: "Computer Systems",
     description: `Curriculum: A comprehensive look at the architecture and functionality of modern computing systems. This includes a deep dive into user behavior and pattern recognition within complex datasets.`,
-    gallery: ["/code.png", "/homepage.png", "/image3.png", "/image4.png", "/image5.png", "/image6.png", "/image7.png", "/image8.png", "/image9.png"],
+    gallery: ["/chess1.png", "/chess3.png", "/chess5.png", "/image4.png", "/image5.png", "/image6.png", "/image7.png", "/image8.png", "/image9.png"],
   },
 };
 
