@@ -171,7 +171,7 @@ export default function PortfolioPage() {
           <button onClick={() => handleCopy("3852420217", "Phone")} className="dot-btn">
             <PhoneCall size={18} />
           </button>
-          <button onClick={() => handleCopy("adurham00@gmail.com", "Email")} className="dot-btn">
+          <button onClick={() => handleCopy("abigaildurham00@gmail.com", "Email")} className="dot-btn">
             <Mail size={18} />
           </button>
         </div>
