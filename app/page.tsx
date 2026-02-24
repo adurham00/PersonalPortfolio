@@ -18,18 +18,17 @@ const colors = {
 
 export default function PortfolioPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [copiedText, setCopiedText] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [copiedText, setCopiedText] = useState(null);
 
   const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % items.length);
   const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
-  const getIndex = (offset: number) => (currentIndex + offset + items.length) % items.length;
+  const getIndex = (offset) => (currentIndex + offset + items.length) % items.length;
 
-  // Function to handle clipboard copy
-  const handleCopy = (text: string, label: string) => {
+  const handleCopy = (text, label) => {
     navigator.clipboard.writeText(text);
     setCopiedText(label);
-    setTimeout(() => setCopiedText(null), 2000); // Reset notification after 2 seconds
+    setTimeout(() => setCopiedText(null), 2000);
   };
 
   const activeItems = [
@@ -44,69 +43,108 @@ export default function PortfolioPage() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
         
         .home-wrapper {
-          margin-top: -40px;
-        }
-
-        .header-section {
-          text-align: center;
-          padding-bottom: 45px;
           position: relative;
-        }
-
-        .image-box:hover {
-          opacity: 0.9;
-          transform: scale(1.02);
-          transition: all 0.3s ease;
-        }
-
-        .lightbox-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
+          z-index: 1;
           width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.85);
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 0; 
+          padding-bottom: 50px; 
+        }
+
+        .header-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 25px; 
+          margin-top: -10px; 
+          margin-bottom: 35px; 
+          text-align: center;
+          width: 100%;
+        }
+
+        .hero-title-text {
+          margin: 0;
           display: flex;
           justify-content: center;
-          align-items: center;
-          z-index: 1000;
-          cursor: pointer;
-          backdrop-filter: blur(5px);
         }
 
-        .lightbox-img {
-          max-width: 90%;
-          max-height: 80vh;
-          object-fit: contain;
-          border-radius: 8px;
-          box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        .hero-title-text img {
+          width: clamp(320px, 70vw, 700px);
+          height: auto;
+          display: block;
+        }
+
+        .contact-dots {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          position: relative;
         }
 
         .dot-btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
           background-color: #f5f5f5;
           color: #4A3728;
-          margin: 0 10px;
           transition: all 0.2s ease;
-          text-decoration: none;
           cursor: pointer;
           border: none;
-          position: relative;
         }
 
         .dot-btn:hover {
           background-color: #8B735B;
           color: white;
+          transform: translateY(-2px);
+        }
+
+        /* VIEW MORE HOVER EFFECT */
+        .view-more-btn {
+          text-decoration: none;
+          border: 2px solid ${colors.primary};
+          padding: 12px 36px;
+          borderRadius: 40px;
+          display: inline-block;
+          background-color: transparent;
+          color: ${colors.primary};
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .view-more-btn:hover {
+          background-color: ${colors.primary};
+          color: white !important;
+          transform: translateY(-3px);
+          box-shadow: 0 4px 12px rgba(74, 55, 40, 0.2);
+        }
+
+        .view-more-btn:hover span {
+          color: white !important;
+        }
+
+        .carousel-container {
+          position: relative;
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 10px 0;
+        }
+
+        .footer-section {
+          text-align: center;
+          margin-top: 35px;
+          padding-bottom: 20px;
         }
 
         .copy-toast {
           position: absolute;
-          top: 90px;
+          top: -50px;
           left: 50%;
           transform: translateX(-50%);
           background: #4A3728;
@@ -114,72 +152,38 @@ export default function PortfolioPage() {
           padding: 8px 16px;
           border-radius: 20px;
           font-size: 14px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          animation: fadeInOut 2s ease-in-out;
+          white-space: nowrap;
           z-index: 10;
         }
 
-        @keyframes fadeInOut {
-          0% { opacity: 0; transform: translate(-50%, -10px); }
-          15% { opacity: 1; transform: translate(-50%, 0); }
-          85% { opacity: 1; transform: translate(-50%, 0); }
-          100% { opacity: 0; transform: translate(-50%, -10px); }
-        }
-
         @media (max-width: 768px) {
-          .home-wrapper { margin-top: 20px !important; }
+          .header-container { margin-top: 0; margin-bottom: 20px; gap: 15px; }
+          .hero-title-text img { width: 85%; }
         }
       `}</style>
 
-      {/* Lightbox Modal */}
-      {selectedImage && (
-        <div className="lightbox-overlay" onClick={() => setSelectedImage(null)}>
-          <button 
-            style={{ position: 'absolute', top: '20px', right: '20px', color: 'white', background: 'none', border: 'none', cursor: 'pointer' }}
-            onClick={() => setSelectedImage(null)}
-          >
-            <X size={40} />
-          </button>
-          <img src={selectedImage} className="lightbox-img" alt="Enlarged view" />
-        </div>
-      )}
-
-      {/* Hero / Logo Section */}
-      <header className="header-section">
-        <div className="hero-title-text" style={{ marginTop: '-20px' }}>
-          <img 
-            src="/AbigailDurham2.svg" 
-            alt="Abigail Durham" 
-            style={{ maxWidth: '650px', width: '90%', height: 'auto', display: 'block', margin: '0 auto' }} 
-          />
+      {/* Header Section */}
+      <div className="header-container">
+        <div className="hero-title-text">
+          <img src="/AbigailDurham2.svg" alt="Abigail Durham" />
         </div>
         
-        {/* Toast Notification */}
-        {copiedText && (
-          <div className="copy-toast">
-            <Check size={14} /> {copiedText} Copied!
-          </div>
-        )}
-
-        {/* Contact Icons */}
-        <div className="contact-dots" style={{ marginTop: '40px' }}>
+        <div className="contact-dots">
+          {copiedText && <div className="copy-toast">{copiedText} Copied!</div>}
           <a href="https://www.linkedin.com/in/abby-durham00" target="_blank" rel="noopener noreferrer" className="dot-btn">
-            <Linkedin size={18} />
+            <Linkedin size={22} />
           </a>
           <button onClick={() => handleCopy("3852420217", "Phone")} className="dot-btn">
-            <PhoneCall size={18} />
+            <PhoneCall size={22} />
           </button>
           <button onClick={() => handleCopy("abigaildurham00@gmail.com", "Email")} className="dot-btn">
-            <Mail size={18} />
+            <Mail size={22} />
           </button>
         </div>
-      </header>
+      </div>
 
       {/* Carousel Section */}
-      <section className="carousel-container" style={{ marginTop: '-10px' }}>
-        <div className="grey-backdrop-bar" />
+      <section className="carousel-container">
         <div className="carousel-stage">
           {activeItems.map((slot) => {
             const item = items[slot.index];
@@ -195,41 +199,54 @@ export default function PortfolioPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    position: 'relative',
-                    padding: '10px',
+                    padding: '20px',
                     cursor: 'pointer',
-                    borderRadius: '8px'
+                    borderRadius: '16px',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.08)'
                   }}
                 >
-                  {item.image ? (
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-                    />
-                  ) : (
-                    <span className="placeholder-q" style={{ opacity: 0.2 }}>?</span>
-                  )}
+                  <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </div>
-                <p className="box-label" style={{ color: colors.secondary, marginTop: '10px' }}>
+                <p style={{ 
+                  color: colors.secondary, 
+                  marginTop: '15px', 
+                  textAlign: 'center', 
+                  fontSize: '16px',
+                  fontWeight: '500' 
+                }}>
                   {item.title}
                 </p>
               </div>
             );
           })}
         </div>
-
+        
         <div className="controls-overlay">
-          <button className="arrow-btn" onClick={prevSlide}><ChevronLeft size={24} /></button>
-          <button className="arrow-btn" onClick={nextSlide}><ChevronRight size={24} /></button>
+          <button className="arrow-btn" onClick={prevSlide}><ChevronLeft size={28} /></button>
+          <button className="arrow-btn" onClick={nextSlide}><ChevronRight size={28} /></button>
         </div>
       </section>
 
-      <div className="footer-section" style={{ marginTop: '20px' }}>
+      {/* Footer Section */}
+      <div className="footer-section">
         <Link href="/mywork" className="view-more-btn">
-          <span style={{ color: colors.primary, fontWeight: '600' }}>View More</span>
+          <span style={{ fontWeight: '700', fontSize: '15px', letterSpacing: '0.05em' }}>VIEW MORE</span>
         </Link>
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div className="lightbox-overlay" onClick={() => setSelectedImage(null)} style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+          backgroundColor: 'rgba(0,0,0,0.9)', display: 'flex', justifyContent: 'center', 
+          alignItems: 'center', zIndex: 2000, backdropFilter: 'blur(4px)'
+        }}>
+          <button style={{ position: 'absolute', top: '30px', right: '30px', color: 'white', background: 'none', border: 'none' }}>
+            <X size={44} />
+          </button>
+          <img src={selectedImage} style={{ maxWidth: '90%', maxHeight: '85vh', objectFit: 'contain' }} alt="Large view" />
+        </div>
+      )}
     </main>
   );
 }

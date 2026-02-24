@@ -22,6 +22,11 @@ export default function Navbar() {
   return (
     <>
       <style jsx global>{`
+        /* Reset for the navbar area to prevent padding from causing overflow */
+        .nav-wrapper, .nav-wrapper * {
+          box-sizing: border-box;
+        }
+
         .nav-container {
           display: flex;
           justify-content: center;
@@ -31,6 +36,7 @@ export default function Navbar() {
           border-bottom: 1px solid #f0f0f0;
           max-width: 1400px;
           margin: 0 auto;
+          width: 100%;
         }
 
         .nav-link {
@@ -41,41 +47,54 @@ export default function Navbar() {
           color: ${colors.secondary};
           transition: 0.3s ease;
           white-space: nowrap;
+          flex-shrink: 1; /* Allows links to stay within bounds */
         }
 
-        .nav-link:hover { color: ${colors.primary}; }
+        .nav-link:hover { 
+          color: ${colors.primary}; 
+        }
         
         .nav-link.active {
           color: ${colors.primary} !important;
           font-weight: 600;
         }
 
-        /* MOBILE FIXES - Specifically targeting iPhone widths */
-        @media (max-width: 700px) {
+        /* TABLET & SMALL DESKTOP */
+        @media (max-width: 800px) {
           .nav-container {
-            padding: 15px 5px; /* Minimal side padding */
-            gap: 5px;          /* Minimal gap to prevent overflow */
-            justify-content: space-around; /* Distributes links without hitting edges */
-            width: 100%;
-          }
-          
-          .nav-link {
-            font-size: 10px;       /* Scale down text */
-            letter-spacing: 0.5px;  /* Minimal letter spacing */
-            padding: 5px;          /* Small touch target area */
+            gap: 25px;
+            padding: 40px 15px 15px 15px;
           }
         }
 
-        /* EXTRA TIGHT SCREENS (iPhone SE/Mini) */
-        @media (max-width: 350px) {
+        /* MOBILE FIXES (iPhone / Android) */
+        @media (max-width: 600px) {
+          .nav-container {
+            padding: 20px 10px; 
+            gap: 15px; 
+          }
+          
           .nav-link {
-            font-size: 9px;
-            letter-spacing: 0px;
+            font-size: 11px;
+            letter-spacing: 1px; /* Reducing spacing is key for mobile width */
+          }
+        }
+
+        /* ULTRA TIGHT SCREENS (iPhone SE / 320px wide) */
+        @media (max-width: 360px) {
+          .nav-container {
+            gap: 10px;
+            padding: 15px 5px;
+          }
+          
+          .nav-link {
+            font-size: 10px;
+            letter-spacing: 0.5px;
           }
         }
       `}</style>
 
-      <div style={{ width: '100%', backgroundColor: '#ffffff', position: 'relative', zIndex: 100 }}>
+      <div className="nav-wrapper" style={{ width: '100%', backgroundColor: '#ffffff', position: 'relative', zIndex: 100 }}>
         <nav className="nav-container">
           {navLinks.map((link) => (
             <Link 
